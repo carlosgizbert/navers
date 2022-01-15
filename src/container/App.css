@@ -1,0 +1,16 @@
+:root {
+  ---color-primary-purple-00: #6600ca;
+  ---color-neutral-dark-00: #212121;
+}
+
+body {
+  background-color: var(---color-primary-purple-00);
+  color: var(---color-neutral-dark-00);
+}
+
+.App {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  max-width: 1200px;
+}
