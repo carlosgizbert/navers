@@ -3,6 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: var(---color-primary-purple-00);
 }
 
 .login-box {
@@ -14,8 +15,8 @@
 }
 
 .logo {
+  text-align: center;
   font-size: 2rem;
-  margin-bottom: 2.5rem;
 }
 
 .login-box .fields {

@@ -1,0 +1,12 @@
+.bt-primary {
+  color: white;
+  background-color: var(---color-primary-purple-00);
+  border: none;
+  height: 2.5rem;
+  padding: 0.5rem 1rem;
+  min-width: 176px;
+}
+
+.bt:hover {
+  cursor: pointer;
+}

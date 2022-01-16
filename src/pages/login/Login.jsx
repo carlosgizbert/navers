@@ -3,6 +3,7 @@ import './Login.css'
 import api from '../../api'
 import { Formik, Form, Field } from 'formik'
 import { useNavigate } from 'react-router'
+import {ReactComponent as Logo} from '../../assets/logo.svg'
 
 const initialState = {
   email: '',
@@ -11,18 +12,15 @@ const initialState = {
 
 const Login = () => { 
   const [values, setValues] = useState(initialState)
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
-  const onChange = (ev) =>{
-    const {name, value } = ev.target
-    console.log(name, value)
+  const onChange = (e) =>{
+    const {name, value } = e.target
     setValues({ ...values, [name]: value})
-
   }
 
   // precisa usar navigate como hook dentro do componente função
-  const handleLogin = ev => {
-    console.log(ev, values)
+  const handleLogin = e => {
     api.post('/users/login', values)
     .then(res => 
       {
@@ -39,12 +37,13 @@ const Login = () => {
   return(
     <div className="login-page">
       <div className="login-box">
-      <div className="logo">Login</div>
+      <div className="logo"><Logo/></div>
       <Formik initialValues={{}} onSubmit={handleLogin}>
-        <Form className='fields'>
+        <Form className='fields mt-20'>
           <div htmlFor="email">E-mail</div>
           <Field 
           className="field" 
+          type="text"
           name="email" 
           placeholder="Insira seu email" 
           onChange={onChange}
@@ -52,6 +51,7 @@ const Login = () => {
           <div htmlFor="password">Senha</div>
           <Field 
           className="field" 
+          type="password"
           name="password" 
           placeholder="Insira sua senha" 
           onChange={onChange}

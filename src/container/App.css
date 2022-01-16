@@ -4,13 +4,22 @@
 }
 
 body {
-  background-color: var(---color-primary-purple-00);
   color: var(---color-neutral-dark-00);
 }
 
 .App {
   margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  max-width: 1200px;
+  background-color: white;
+}
+
+/* margins */
+
+.mt-00 {
+  margin-top: 0.5rem;
+}
+.mt-10 {
+  margin-top: 1rem;
+}
+.mt-20 {
+  margin-top: 2rem;
 }

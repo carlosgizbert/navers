@@ -1,0 +1,14 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 120px;
+}
+
+.logo path {
+  fill: var(---color-primary-purple-00);
+}
+
+.logo {
+  cursor: pointer;
+}
