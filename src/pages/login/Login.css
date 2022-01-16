@@ -19,25 +19,6 @@
   font-size: 2rem;
 }
 
-.login-box .fields {
-  display: flex;
-  flex-direction: column;
-}
-
-.login-box .field {
-  height: 40px;
-  margin-top: 0.25rem;
-  margin-bottom: 2rem;
-  padding-left: 0.5rem;
-  transition: 0.2s;
-  border: 1px solid var(---color-neutral-dark-00);
-}
-
-.login-box .field:focus {
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
-  outline: none;
-}
-
 .bt-login {
   height: 40px;
   border: none;

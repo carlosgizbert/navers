@@ -3,18 +3,21 @@ import Header from './components/Header'
 import './Navers.css'
 import Button from '../components/Button'
 import NaverList from './components/NaversList'
+import { Link } from 'react-router-dom'
 
 const Navers = () => {
   return(
     <div className="navers-page">
       <div className="wrapper">
         <Header/>
-          <div className="title">
-            <h1>Navers</h1>
+        <div className="title">
+          <h1>Navers</h1>
+          <Link to="/adicionar">
             <Button className="bt bt-primary" value="Adicionar Naver"/>
-            </div>
-            <NaverList/>
+          </Link>
         </div>
+        <NaverList/>
+      </div>
     </div>
   )
 }

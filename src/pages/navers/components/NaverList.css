@@ -59,11 +59,12 @@
 }
 
 .modal .body span {
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .modal .body .name {
   font-size: 1.5rem;
+  font-weight: 600;
 }
 
 .actions {

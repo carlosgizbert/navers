@@ -40,7 +40,7 @@ const Login = () => {
       <div className="logo"><Logo/></div>
       <Formik initialValues={{}} onSubmit={handleLogin}>
         <Form className='fields mt-20'>
-          <div htmlFor="email">E-mail</div>
+          <span htmlFor="email">E-mail</span>
           <Field 
           className="field" 
           type="text"
@@ -48,7 +48,7 @@ const Login = () => {
           placeholder="Insira seu email" 
           onChange={onChange}
           />
-          <div htmlFor="password">Senha</div>
+          <span htmlFor="password">Senha</span>
           <Field 
           className="field" 
           type="password"
