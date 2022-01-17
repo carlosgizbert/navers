@@ -10,6 +10,8 @@ const CardsNavers = () => {
 const [modalNaver, setModalNaver] = useState(false)
 const [modalDelete, setModalDelete] = useState(false)
 const [clickedModal, setClickedModal] = useState(null)
+const [loading, setLoading] = useState(true)
+
 	const [navers, setNavers] = useState([]);
 	useEffect(() => {
 		const token = localStorage.getItem('token')
@@ -18,10 +20,10 @@ const [clickedModal, setClickedModal] = useState(null)
 		.then(res => {
 			const { data } = res
 			setNavers(data)
+			setLoading(false)
 		})
 		} 
 	getNavers()
-
 	}, [])
 
 	// modal naver - refatorar
@@ -87,18 +89,18 @@ const [clickedModal, setClickedModal] = useState(null)
 		e.target.src = 'https://images.unsplash.com/photo-1533241818630-edad657eb3da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80'
 	}
 
-		// CARD RETURN
-    return(
-      navers.map(naver => 
-				<div key={naver.id} className='card'>
-					<img 
+	const NaversSuccess = () => {
+		return navers.map(naver => 
+			<div key={naver.id} className='card'>
+				<img 
 					alt={naver.name} 
 					className="img" 
 					src={naver.url} 
 					onClick={(e) => handleOpenModalNaver(naver.id)} 
-					onError={replaceBrokenImage}></img>
+					onError={replaceBrokenImage}>
+				</img>
 				<div className='details'>
-					<div  className='name'>
+					<div className='name'>
 						{naver.name}
 					</div>
 					<div className="description">
@@ -110,100 +112,120 @@ const [clickedModal, setClickedModal] = useState(null)
 					</div>
 				</div>
 				<Modal
-				name="details-naver" 
-				isOpen={modalNaver && naver.id === clickedModal} 
-				onRequestClose={handleCloseModalNaver}
-				style={modalNaverCustomStyles} 
-				ariaHideApp={false}
-				>
-					<div className="modal">
-						<section className="image-wrapper">
-						<img className="img" onError={replaceBrokenImage} alt={naver.name} src={naver.url}></img>
-						</section>
-						<section className="body">
-							<div className="details-naver">
-							<div className="name">{naver.name}</div>
-							<div>{naver.job_role}</div>
-							<div>
-								<span>Idade</span>
-								<div className="mt-00">{naver.birthdate}</div>
-							</div>
-							<div>
-								<span>Tempo de empresa</span>
-								<div className="mt-00">{naver.admission_date}</div>
-							</div>
-							<div>
-								<span>Projetos que participou</span>
-								<div className="mt-00">{naver.project}</div>
-							</div>
+			name="details-naver" 
+			isOpen={modalNaver && naver.id === clickedModal} 
+			onRequestClose={handleCloseModalNaver}
+			style={modalNaverCustomStyles} 
+			ariaHideApp={false}
+			>
+				<div className="modal">
+					<section className="image-wrapper">
+					<img className="img" onError={replaceBrokenImage} alt={naver.name} src={naver.url}></img>
+					</section>
+					<section className="body">
+						<div className="details-naver">
+						<div className="name">{naver.name}</div>
+						<div>{naver.job_role}</div>
+						<div>
+							<span>Idade</span>
+							<div className="mt-00">{naver.birthdate}</div>
 						</div>
-						<div className="actions">
-							<div className="bt-icon" ><IconRemove/></div>
-							<div className='bt-icon'><IconEdit/></div>
-							</div>
-						</section>
-						<div className="fechar" onClick={handleCloseModalNaver}><IconClose/></div>
-					</div>
-				</Modal>
-	
-				<Modal
-				name="details-naver" 
-				isOpen={modalNaver && naver.id === clickedModal} 
-				onRequestClose={handleCloseModalNaver}
-				style={modalNaverCustomStyles} 
-				ariaHideApp={false}
-				>
-					<div className="modal">
-						<section className="image-wrapper">
-						<img className="img" onError={replaceBrokenImage} alt={naver.name} src={naver.url}></img>
-						</section>
-						<section className="body">
-							<div className="details-naver">
-							<div className="name">{naver.name}</div>
-							<div>{naver.job_role}</div>
-							<div>
-								<span>Idade</span>
-								<div className="mt-00">{naver.birthdate}</div>
-							</div>
-							<div>
-								<span>Tempo de empresa</span>
-								<div className="mt-00">{naver.admission_date}</div>
-							</div>
-							<div>
-								<span>Projetos que participou</span>
-								<div className="mt-00">{naver.project}</div>
-							</div>
+						<div>
+							<span>Tempo de empresa</span>
+							<div className="mt-00">{naver.admission_date}</div>
 						</div>
-						<div className="actions">
-							<div className="bt-icon"><IconRemove/></div>
-							<div className='bt-icon'><IconEdit/></div>
-							</div>
-						</section>
-						<div className="fechar" onClick={handleCloseModalNaver}><div className="bt-icon"><IconClose/></div></div>
+						<div>
+							<span>Projetos que participou</span>
+							<div className="mt-00">{naver.project}</div>
+						</div>
 					</div>
-				</Modal>
-
-				<Modal 
-          isOpen={modalDelete} 
-          onRequestClose={handleCloseModalDelete}
-          style={modalDeleteCustomStyles} 
-          ariaHideApp={false}
-          >
-          <div className="modal-delete">
-            <div className="body">
-              <h1>Excluir Naver</h1>
-              <span>Tem certeza que deseja excluir este Naver?</span>
-							<div className='actions'>
-							<div className="bt" onClick={handleCloseModalDelete}>Cancelar</div>
-							<div className="bt" onClick={handleCloseModalDelete}>Excluir</div>
-							</div>
-            </div>
-				  </div>
-        </Modal>
+					<div className="actions">
+						<div className="bt-icon" ><IconRemove/></div>
+						<div className='bt-icon'><IconEdit/></div>
+						</div>
+					</section>
+					<div className="fechar" onClick={handleCloseModalNaver}><IconClose/></div>
 				</div>
-				)
+			</Modal>
+	
+			<Modal
+			name="details-naver" 
+			isOpen={modalNaver && naver.id === clickedModal} 
+			onRequestClose={handleCloseModalNaver}
+			style={modalNaverCustomStyles} 
+			ariaHideApp={false}
+			>
+				<div className="modal">
+					<section className="image-wrapper">
+					<img className="img" onError={replaceBrokenImage} alt={naver.name} src={naver.url}></img>
+					</section>
+					<section className="body">
+						<div className="details-naver">
+						<div className="name">{naver.name}</div>
+						<div>{naver.job_role}</div>
+						<div>
+							<span>Idade</span>
+							<div className="mt-00">{naver.birthdate}</div>
+						</div>
+						<div>
+							<span>Tempo de empresa</span>
+							<div className="mt-00">{naver.admission_date}</div>
+						</div>
+						<div>
+							<span>Projetos que participou</span>
+							<div className="mt-00">{naver.project}</div>
+						</div>
+					</div>
+					<div className="actions">
+						<div className="bt-icon">
+							<IconRemove/>
+						</div>
+						<div className='bt-icon'>
+							<IconEdit/>
+						</div>
+					</div>
+					</section>
+					<div className="fechar" onClick={handleCloseModalNaver}>
+						<div className="bt-icon">
+							<IconClose/>
+						</div>
+					</div>
+				</div>
+			</Modal>
+			<Modal 
+				isOpen={modalDelete} 
+				onRequestClose={handleCloseModalDelete}
+				style={modalDeleteCustomStyles} 
+				ariaHideApp={false}
+				>
+				<div className="modal-delete">
+					<div className="body">
+						<h1>Excluir Naver</h1>
+						<span>Tem certeza que deseja excluir este Naver?</span>
+						<div className='actions'>
+						<div className="bt" onClick={handleCloseModalDelete}>Cancelar</div>
+						<div className="bt" onClick={handleCloseModalDelete}>Excluir</div>
+						</div>
+					</div>
+				</div>
+			</Modal>
+			</div>
+			)
+	}
+
+	const NoNavers = () => {
+		return (
+			<div>
+			<h2 className='mt-40'>Nenhum Naver cadastrado...</h2>
+				<h3 className='mt-10'>Clique em "Adicionar Naver" para cadastrar o primeiro!</h3>
+			</div>
+		)
+	}
+
+    return(
+      (!loading && navers.length <= 0) ? <NoNavers/> :
+			(!loading) ? <NaversSuccess/> : <div>Buscando ...</div>
     )
-		// FIM CARD RETURN
   }
 
 const NaverList = () =>   {
@@ -213,8 +235,6 @@ const NaverList = () =>   {
     </section>
   )
 }
-
-
 
 
 export default NaverList
