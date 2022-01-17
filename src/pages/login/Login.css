@@ -32,7 +32,7 @@
   padding-left: 1rem;
 }
 
-.form-erros li:first-child {
+.form-erros li:not(:last-child) {
   text-decoration: none;
   margin-bottom: 0.5rem;
 }

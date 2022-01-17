@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import Modal from 'react-modal';
-import './NaverList.css'
-import api from '../../../api'
-
-
+import './NaverList.css';
+import api from '../../../api';
+import { ReactComponent as IconEdit } from '../../components/svg/icon-edit.svg'
+import { ReactComponent as IconRemove }from '../../components/svg/icon-trash.svg'
+import { ReactComponent as IconClose }from '../../components/svg/icon-x.svg'
 
 const CardsNavers = () => {
   const [modalIsOpen, setIsOpen] = useState(false)
@@ -69,11 +70,12 @@ const CardsNavers = () => {
           {naver.job_role}
         </div>
         <div className="actions">
-					<div className="bt-delete">Excluir</div>
-					<div className='bt-edit'>Editar</div>
+					<div className="bt-icon"><IconRemove/></div>
+					<div className='bt-icon'><IconEdit/></div>
         </div>
       </div>
-			<Modal 
+			<Modal
+			name="details-naver" 
 			isOpen={modalIsOpen && naver.id === clickedModal} 
 			onRequestClose={handleCloseModal}
 			style={modalCustomStyles} 
@@ -101,11 +103,48 @@ const CardsNavers = () => {
 						</div>
 					</div>
 					<div className="actions">
-						<div className="bt-delete">Excluir</div>
-						<div className="bt-edit">Edit</div>
-					</div>
+						<div className="bt-icon"><IconRemove/></div>
+						<div className='bt-icon'><IconEdit/></div>
+       	 	</div>
 					</section>
-					<div className="fechar" onClick={handleCloseModal}>x</div>
+					<div className="fechar" onClick={handleCloseModal}><IconClose/></div>
+				</div>
+      </Modal>
+
+			<Modal
+			name="details-naver" 
+			isOpen={modalIsOpen && naver.id === clickedModal} 
+			onRequestClose={handleCloseModal}
+			style={modalCustomStyles} 
+			ariaHideApp={false}
+			>
+        <div className="modal">
+					<section className="image-wrapper">
+					<img className="img" onError={replaceBrokenImage} alt={naver.name} src={naver.url}></img>
+					</section>
+					<section className="body">
+						<div className="details-naver">
+						<div className="name">{naver.name}</div>
+						<div>{naver.job_role}</div>
+						<div>
+							<span>Idade</span>
+							<div className="mt-00">{naver.birthdate}</div>
+						</div>
+						<div>
+							<span>Tempo de empresa</span>
+							<div className="mt-00">{naver.admission_date}</div>
+						</div>
+						<div>
+							<span>Projetos que participou</span>
+							<div className="mt-00">{naver.project}</div>
+						</div>
+					</div>
+					<div className="actions">
+						<div className="bt-icon"><IconRemove/></div>
+						<div className='bt-icon'><IconEdit/></div>
+       	 	</div>
+					</section>
+					<div className="fechar" onClick={handleCloseModal}><div className="bt-icon"><IconClose/></div></div>
 				</div>
       </Modal>
       </div>

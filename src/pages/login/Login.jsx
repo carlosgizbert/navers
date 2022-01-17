@@ -57,6 +57,8 @@ const Login = () => {
               <ul>
               {errors.email && <li>{errors.email}</li>}
               {errors.password && <li>{errors.password}</li>}
+              <li>email: testing-user@nave.rs</li>
+              <li>senha: nave1234</li>
               </ul>
             </div>}
           <span htmlFor="email">E-mail</span>

@@ -117,6 +117,24 @@
   }
 }
 
+.bt-icon {
+  cursor: pointer;
+  padding: 0.5rem;
+  height: 1.5rem;
+  width: 1.5rem;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  -webkit-align-items: center; /* Safari 7.0+ */
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.bt-icon:hover {
+  background-color: rgb(233, 233, 233);
+  border-radius: 40px;
+}
+
 @media (max-width: 414px) {
   .naver-list {
     grid-template-columns: 1fr;
