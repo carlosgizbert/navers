@@ -42,7 +42,7 @@ const CardsNavers = () => {
 			border: 'none',
 			margin: '0',
 			width: '1007px',
-			height: 'auto',
+			minHeight: '60vh',
 			borderRadius: '0'
 		},
 	}
@@ -93,11 +93,11 @@ const CardsNavers = () => {
 						</div>
 						<div>
 							<span>Tempo de empresa</span>
-							<div className="mt-00">{naver.birthdate}</div>
+							<div className="mt-00">{naver.admission_date}</div>
 						</div>
 						<div>
 							<span>Projetos que participou</span>
-							<div className="mt-00">{naver.birthdate}</div>
+							<div className="mt-00">{naver.project}</div>
 						</div>
 					</div>
 					<div className="actions">

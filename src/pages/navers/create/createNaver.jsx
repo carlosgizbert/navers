@@ -27,6 +27,7 @@ const CreateNaver = () => {
 
   const handleCreate = e => {
     const token = localStorage.getItem('token')
+
     api.post('/navers', values, { headers: {"Authorization" : `Bearer ${token}`} })
     .then(res => 
       {
@@ -40,6 +41,16 @@ const CreateNaver = () => {
       handleCloseModal(e)
       console.log('Erro ao cadatrar !! '+e)
     })
+  }
+
+  // tools form
+  const birthDataTransform = (value) => {
+    const anoAtual = new Date().getFullYear()
+    return 
+  }
+
+  const admissionDateTransform = (value) => {
+    return 
   }
 
 
