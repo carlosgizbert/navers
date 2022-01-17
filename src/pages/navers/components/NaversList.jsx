@@ -44,8 +44,11 @@ const CardsNavers = () => {
 			margin: '0',
 			width: '60vw',
 			minHeight: '60vh',
-			borderRadius: '0'
+			borderRadius: '0',
 		},
+		overlay: {
+			backgroundColor: 'rgba(0, 0, 0, 0.5)'
+		}
 	}
 
 	const replaceBrokenImage = (e) => {
