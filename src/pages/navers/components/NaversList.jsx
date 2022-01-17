@@ -9,10 +9,8 @@ const CardsNavers = () => {
   const [modalIsOpen, setIsOpen] = useState(false)
 	const [clickedModal, setClickedModal] = useState(null)
 	const [navers, setNavers] = useState([]);
-
+	const token = localStorage.getItem('token')
 	useEffect(() => {
-		const token = localStorage.getItem('token')
-		
 		const getNavers = async () => {
 		await api.get('/navers' , { headers: {"Authorization" : `Bearer ${token}`} })
 		.then(res => {
@@ -21,10 +19,8 @@ const CardsNavers = () => {
 		})
 		} 
 	getNavers()
+
 	}, [])
-
-	
-
 
   function handleOpenModal(naverId) {
 		setClickedModal(naverId)
@@ -49,14 +45,11 @@ const CardsNavers = () => {
 			height: 'auto',
 			borderRadius: '0'
 		},
-	};
+	}
 
 	const replaceBrokenImage = (e) => {
 		e.target.src = 'https://images.unsplash.com/photo-1533241818630-edad657eb3da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80'
 	}
-
-
-
 
 		// CARD RETURN
     return(
