@@ -17,8 +17,6 @@
 }
 
 .bt-voltar {
-  height: 32px;
-  width: 32px;
   margin-right: 1.5rem;
   cursor: pointer;
   display: -webkit-flex; /* Safari */

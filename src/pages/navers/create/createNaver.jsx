@@ -74,7 +74,7 @@ const handleCloseModal = (e) => {
       <div className="wrapper">
         <div className="create-header">
           <Link to="/navers">
-          <div className="bt-voltar"><BtVoltar/></div>
+          <div className="bt-icon bt-voltar"><BtVoltar/></div>
           </Link>
           <h1>Adicionar Naver</h1>
         </div>
