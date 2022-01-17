@@ -3,6 +3,8 @@
   align-items: center;
   justify-content: space-between;
   height: 120px;
+  width: 100%;
+  max-width: 1200px;
 }
 
 .logo path {

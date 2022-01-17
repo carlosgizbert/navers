@@ -8,8 +8,8 @@ import { Link } from 'react-router-dom'
 const Navers = () => {
   return(
     <div className="navers-page">
+      <Header/>
       <div className="wrapper">
-        <Header/>
         <div className="title">
           <h1>Navers</h1>
           <Link to="/adicionar">

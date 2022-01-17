@@ -70,8 +70,8 @@ const handleCloseModal = (e) => {
 
   return (
     <div className="create-naver-page">
+      <Header/>
       <div className="wrapper">
-        <Header/>
         <div className="create-header">
           <Link to="/navers">
           <div className="bt-voltar"><BtVoltar/></div>
