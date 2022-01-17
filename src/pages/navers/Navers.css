@@ -15,3 +15,10 @@
   align-items: center;
   justify-content: space-between;
 }
+
+@media (max-width: 1200px) {
+  .navers-page {
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+}

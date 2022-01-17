@@ -41,7 +41,7 @@ const CardsNavers = () => {
 			padding: '0',
 			border: 'none',
 			margin: '0',
-			width: '1007px',
+			width: '60vw',
 			minHeight: '60vh',
 			borderRadius: '0'
 		},

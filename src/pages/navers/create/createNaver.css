@@ -56,3 +56,21 @@
 .modal-success .fechar {
   float: right;
 }
+
+@media (max-width: 1200px) {
+  .create-naver-page {
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+
+  .create-naver-page .fields {
+    margin: 1rem 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 0.5rem;
+  }
+
+  .wrapper {
+    margin-bottom: 4rem;
+  }
+}
