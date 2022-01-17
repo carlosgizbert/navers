@@ -20,9 +20,19 @@
   font-size: 2rem;
 }
 
-.bt-login {
-  height: 40px;
-  border: none;
-  background-color: var(---color-primary-purple-00);
-  color: white;
+.form-erros {
+  background-color: rgb(255, 131, 131);
+  border: 1px solid rgb(255, 92, 92);
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.form-erros ul {
+  list-style-type: none;
+  padding-left: 1rem;
+}
+
+.form-erros li:first-child {
+  text-decoration: none;
+  margin-bottom: 0.5rem;
 }
