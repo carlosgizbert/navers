@@ -38,8 +38,8 @@ const [loading, setLoading] = useState(true)
 
 	// modal delete - refatorar
 	function handleOpenModalDelete(naverId) {
-		setClickedModal(naverId)
     setModalDelete(true)
+		setModalNaver(false)
   }
 
   function handleCloseModalDelete() {
@@ -177,7 +177,7 @@ const [loading, setLoading] = useState(true)
 						</div>
 					</div>
 					<div className="actions">
-						<div className="bt-icon">
+						<div className="bt-icon" onClick={e => handleOpenModalDelete(naver.id)}>
 							<IconRemove/>
 						</div>
 						<div className='bt-icon'>
@@ -203,8 +203,8 @@ const [loading, setLoading] = useState(true)
 						<h1>Excluir Naver</h1>
 						<span>Tem certeza que deseja excluir este Naver?</span>
 						<div className='actions'>
-						<div className="bt" onClick={handleCloseModalDelete}>Cancelar</div>
-						<div className="bt" onClick={handleCloseModalDelete}>Excluir</div>
+						<div className="bt">Cancelar</div>
+						<div className="bt">Excluir</div>
 						</div>
 					</div>
 				</div>
