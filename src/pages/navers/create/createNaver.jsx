@@ -43,16 +43,6 @@ const CreateNaver = () => {
     })
   }
 
-  // tools form
-  const birthDataTransform = (value) => {
-    const anoAtual = new Date().getFullYear()
-    return 
-  }
-
-  const admissionDateTransform = (value) => {
-    return 
-  }
-
 
 const modalCustomStyles = {
   content: {
