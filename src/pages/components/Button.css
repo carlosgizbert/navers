@@ -4,10 +4,15 @@
   min-width: 176px;
 }
 
+.bt-primary:hover {
+  box-shadow: var(---shadow-10);
+}
+
 .bt {
   padding: 0.5rem 1rem;
   height: 2.5rem;
   padding: 0.5rem 1rem;
   border: none;
   cursor: pointer;
+  transition: 0.2s;
 }

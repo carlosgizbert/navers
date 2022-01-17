@@ -1,6 +1,9 @@
 :root {
   ---color-primary-purple-00: #6600ca;
   ---color-neutral-dark-00: #212121;
+
+  ---shadow-00: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  ---shadow-10: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
 body {
@@ -44,6 +47,6 @@ body {
 }
 
 .field:focus {
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: var(---shadow-10);
   outline: none;
 }

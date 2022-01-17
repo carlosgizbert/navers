@@ -9,8 +9,8 @@ const CardsNavers = () => {
   const [modalIsOpen, setIsOpen] = useState(false)
 	const [clickedModal, setClickedModal] = useState(null)
 	const [navers, setNavers] = useState([]);
-	const token = localStorage.getItem('token')
 	useEffect(() => {
+		const token = localStorage.getItem('token')
 		const getNavers = async () => {
 		await api.get('/navers' , { headers: {"Authorization" : `Bearer ${token}`} })
 		.then(res => {
