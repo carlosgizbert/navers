@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import Modal from 'react-modal';
 import './NaverList.css';
 import api from '../../../api';
+import { Link } from 'react-router-dom'
 import { ReactComponent as IconEdit } from '../../components/svg/icon-edit.svg'
 import { ReactComponent as IconRemove }from '../../components/svg/icon-trash.svg'
 import { ReactComponent as IconClose }from '../../components/svg/icon-x.svg'
@@ -14,8 +15,9 @@ const [clickedModal, setClickedModal] = useState(null)
 const [loading, setLoading] = useState(true)
 const [navers, setNavers] = useState([])
 
+	const token = localStorage.getItem('token')
+
 	useEffect(() => {
-		const token = localStorage.getItem('token')
 		const getNavers = async () => {
 		await api.get('/navers' , { headers: {"Authorization" : `Bearer ${token}`} })
 		.then(res => {
@@ -56,7 +58,20 @@ const [navers, setNavers] = useState([])
     setModalNaver(false)
   }
 
-	// modal delete - refatorar
+	// axios delete naver
+	const deleteNaver = async (idNaver) => {
+		await api.delete('/navers/'+idNaver, { headers: {"Authorization" : `Bearer ${token}`}}).then(
+		res => {
+			if(res.data){
+				handleOpenModalDeleteSuccess()
+			}else{
+				console.log(res)
+			}
+		}
+		).catch(e => console.log("Erro no catch"+e))
+	}
+
+	// modal confirm delete - refatorar
 	const modalDeleteCustomStyles = {
 		content: {
 			top: '50%',
@@ -106,11 +121,11 @@ const [navers, setNavers] = useState([])
 		}
 	}
 
-
 	const handleOpenModalDeleteSuccess = () => {
 		setModalDelete(false)
 		setModalDeleteSuccess(true)
 	}
+	
 	const handleCloseModalDelSuccess = () =>{
 		setModalDeleteSuccess(false)
 	}
@@ -235,7 +250,7 @@ const [navers, setNavers] = useState([])
 						<span>Tem certeza que deseja excluir este Naver?</span>
 						<div className='actions mt-20'>
 						<div className="bt bt-secondary" onClick={handleCloseModalDelete}>Cancelar</div>
-						<div className="bt bt-primary" onClick={handleOpenModalDeleteSuccess}>Excluir</div>
+						<div className="bt bt-primary" onClick={e => deleteNaver(naver.id)}>Excluir</div>
 						</div>
 					</div>
 				</div>
@@ -255,7 +270,9 @@ const [navers, setNavers] = useState([])
 					</div>
             <div className="body">
               <h1>Naver excluído</h1>
+							<Link to="/navers">
               <div className='mt-20'>Naver excluído com sucesso!</div>
+							</Link>
             </div>
 				  </div>
         </Modal>

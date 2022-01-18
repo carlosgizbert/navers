@@ -3,6 +3,7 @@ import './createNaver.css'
 import Header from '../components/Header'
 import { Form, Formik, Field } from 'formik'
 import {ReactComponent as BtVoltar} from '../../components/svg/BtVoltar.svg'
+import { ReactComponent as IconClose }from '../../components/svg/icon-x.svg'
 import { Link } from 'react-router-dom'
 import api from '../../../api'
 import Modal from 'react-modal';
@@ -118,7 +119,11 @@ const handleCloseModal = (e) => {
           ariaHideApp={false}
           >
           <div className="modal-success">
-            <div className="fechar" onClick={handleCloseModal}>x</div>
+            <Link to="/navers">
+              <div className="fechar">
+                <IconClose/>
+              </div>
+            </Link>
             <div className="body">
               <h1>Naver criado</h1>
               <span>Naver criado com sucesso!</span>
