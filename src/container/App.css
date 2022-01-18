@@ -53,7 +53,7 @@ a {
 }
 
 .field:focus {
-  box-shadow: var(---shadow-10);
+  box-shadow: var(---shadow-00);
   outline: none;
 }
 

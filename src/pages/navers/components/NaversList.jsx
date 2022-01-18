@@ -17,18 +17,18 @@ const [navers, setNavers] = useState([])
 const navigate = useNavigate();
 
 	const token = localStorage.getItem('token')
-	const getNavers = async () => {
-		await api.get('/navers' , { headers: {"Authorization" : `Bearer ${token}`} })
-		.then(res => {
-			const { data } = res
-			setNavers(data)
-			setLoading(false)
-		})
-	} 
 
 	useEffect(() => {
+		const getNavers = async () => {
+			await api.get('/navers' , { headers: {"Authorization" : `Bearer ${token}`} })
+			.then(res => {
+				const { data } = res
+				setNavers(data)
+				setLoading(false)
+			})
+		} 
 	getNavers()
-	}, [])
+	}, [token])
 
 	// modal naver - refatorar
 	const modalNaverCustomStyles = {

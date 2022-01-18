@@ -7,6 +7,8 @@ import { ReactComponent as IconClose }from '../../components/svg/icon-x.svg'
 import { Link, useParams } from 'react-router-dom'
 import api from '../../../api'
 import Modal from 'react-modal';
+import moment from 'moment'
+
 
 const initialState = {
   name: '',
@@ -26,34 +28,51 @@ const EditNaver = () => {
 
   // naverId params
   const { id } = useParams();
-
   const token = localStorage.getItem('token')
-  const getNaver = async () => {
-  await api.get('/navers/'+id , { headers: {"Authorization" : `Bearer ${token}`} })
-  .then(res => {
-    const { data } = res
-    if(data){
-    data.birthdate = isoToYear(data.birthdate)
-    setNaver(data)
-    }
-  })
-}
 
   useEffect(() => {
+    const getNaver = async () => {
+      await api.get('/navers/'+id , { headers: {"Authorization" : `Bearer ${token}`} })
+      .then(res => {
+        const { data } = res
+        if(data){
+        data.birthdate = isoToYear(data.birthdate)
+        setNaver(data)
+        }
+      })
+    }
     getNaver()
   }, [])
     
 
   const onChange = (e) =>{
-    const {name, value } = e.target
+    let {name, value } = e.target
+    
+    name === 'birthdate' ? value = getDateByYear(value) : value = value
+    name === 'admission_date' ? value = getDateByYear(value) : value = value 
+    
     setNaver({ ...naver, [name]: value})
   }
+  
 
   const isoToYear = (birthdateIso) => {
     birthdateIso = parseInt(birthdateIso.toString().substring(0, 10))
     const currentYear = new Date().getFullYear()
     const age =  currentYear - birthdateIso
     return age
+  }
+
+  const getDateByYear = (num) => {
+    const check = moment(new Date(), 'YYYY/MM/DD');
+  
+    const currentMonth = check.format('M');
+    const currentDay   = check.format('D');
+    const currentYear  = check.format('YYYY');
+  
+    const year = (currentYear - num)
+    const completeYear = `${currentDay}/${currentMonth}/${year}`
+    console.log(completeYear)
+    return completeYear
   }
 
   const updateNaver = () => {

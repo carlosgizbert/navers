@@ -35,10 +35,9 @@ const Login = () => {
         if(data){
           localStorage.setItem('token', data.token)
           navigate('/navers')
-          console.log(data)
         }
       }
-    ).catch(e => console.log(e))
+    ).catch(e => console.log("Erro no catch: "+e))
   }
 
 

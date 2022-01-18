@@ -7,6 +7,7 @@ import { ReactComponent as IconClose }from '../../components/svg/icon-x.svg'
 import { Link } from 'react-router-dom'
 import api from '../../../api'
 import Modal from 'react-modal';
+import moment from 'moment'
 
 const initialState = {
   name: '',
@@ -21,9 +22,26 @@ const CreateNaver = () => {
   const [values, setValues] = useState(initialState)
   const [modalSuccess, setModalSuccess] = useState(false)
   
-  const onChange = (e) =>{
-    const {name, value } = e.target
+  const onChange = (e) => {
+    let { name, value } = e.target
+    // converte idade em data nascimento
+    name === 'birthdate' ? value = getDateByYear(value) : value = value
+    name === 'admission_date' ? value = getDateByYear(value) : value = value 
+    console.log(values)
     setValues({ ...values, [name]: value})
+  }
+
+  const getDateByYear = (num) => {
+    const check = moment(new Date(), 'YYYY/MM/DD');
+  
+    const currentMonth = check.format('M');
+    const currentDay   = check.format('D');
+    const currentYear  = check.format('YYYY');
+  
+    const year = (currentYear - num)
+    const completeYear = `${currentDay}/${currentMonth}/${year}`
+    console.log(completeYear)
+    return completeYear
   }
 
   const handleCreate = e => {
@@ -95,7 +113,7 @@ const handleCloseModal = (e) => {
             </div>
             <div>
               <span htmlFor="birthdate">Idade</span>
-              <Field className="field" type="text" name="birthdate" placeholder="Idade" onChange={onChange}></Field>
+              <Field className="field" type="number" name="birthdate" placeholder="Idade" onChange={onChange}></Field>
             </div>
             <div>
               <span htmlFor="admission_date">Tempo de empresa (Em anos)</span>
