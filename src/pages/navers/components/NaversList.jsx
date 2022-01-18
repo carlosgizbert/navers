@@ -9,10 +9,11 @@ import { ReactComponent as IconClose }from '../../components/svg/icon-x.svg'
 const CardsNavers = () => {
 const [modalNaver, setModalNaver] = useState(false)
 const [modalDelete, setModalDelete] = useState(false)
+const [modalDeleteSucess, setModalDeleteSuccess] = useState(false)
 const [clickedModal, setClickedModal] = useState(null)
 const [loading, setLoading] = useState(true)
+const [navers, setNavers] = useState([])
 
-	const [navers, setNavers] = useState([]);
 	useEffect(() => {
 		const token = localStorage.getItem('token')
 		const getNavers = async () => {
@@ -27,25 +28,6 @@ const [loading, setLoading] = useState(true)
 	}, [])
 
 	// modal naver - refatorar
-  function handleOpenModalNaver(naverId) {
-		setClickedModal(naverId)
-    setModalNaver(true)
-  }
-
-  function handleCloseModalNaver() {
-    setModalNaver(false)
-  }
-
-	// modal delete - refatorar
-	function handleOpenModalDelete(naverId) {
-    setModalDelete(true)
-		setModalNaver(false)
-  }
-
-  function handleCloseModalDelete() {
-    setModalDelete(false)
-  }
-
 	const modalNaverCustomStyles = {
 		content: {
 			top: '50%',
@@ -65,6 +47,16 @@ const [loading, setLoading] = useState(true)
 		}
 	}
 
+	const handleOpenModalNaver = (naverId) => {
+		setClickedModal(naverId)
+    setModalNaver(true)
+  }
+
+  const handleCloseModalNaver = () => {
+    setModalNaver(false)
+  }
+
+	// modal delete - refatorar
 	const modalDeleteCustomStyles = {
 		content: {
 			top: '50%',
@@ -83,6 +75,44 @@ const [loading, setLoading] = useState(true)
 		overlay: {
 			backgroundColor: 'rgba(0, 0, 0, 0.2)'
 		}
+	}
+
+	const handleOpenModalDelete = (naverId) => {
+    setModalDelete(true)
+		setModalNaver(false)
+  }
+
+  const handleCloseModalDelete = () => {
+    setModalDelete(false)
+  }
+
+	// modal delete success - refatorar
+	const modalDeleteSuccessCustomStyles = {
+		content: {
+			top: '50%',
+			left: '50%',
+			right: 'auto',
+			bottom: 'auto',
+			transform: 'translate(-50%, -50%)',
+			padding: '2rem 2rem 3rem 2rem',
+			border: 'none',
+			margin: '0',
+			width: '592px',
+			height: 'auto',
+			borderRadius: '0'
+		},
+		overlay: {
+			backgroundColor: 'rgba(0, 0, 0, 0.2)'
+		}
+	}
+
+
+	const handleOpenModalDeleteSuccess = () => {
+		setModalDelete(false)
+		setModalDeleteSuccess(true)
+	}
+	const handleCloseModalDelSuccess = () =>{
+		setModalDeleteSuccess(false)
 	}
 
 	const replaceBrokenImage = (e) => {
@@ -192,6 +222,7 @@ const [loading, setLoading] = useState(true)
 					</div>
 				</div>
 			</Modal>
+			{/* MODAL CONFIRM DELETE */}
 			<Modal 
 				isOpen={modalDelete} 
 				onRequestClose={handleCloseModalDelete}
@@ -202,13 +233,32 @@ const [loading, setLoading] = useState(true)
 					<div className="body">
 						<h1>Excluir Naver</h1>
 						<span>Tem certeza que deseja excluir este Naver?</span>
-						<div className='actions'>
-						<div className="bt">Cancelar</div>
-						<div className="bt">Excluir</div>
+						<div className='actions mt-20'>
+						<div className="bt bt-secondary" onClick={handleCloseModalDelete}>Cancelar</div>
+						<div className="bt bt-primary" onClick={handleOpenModalDeleteSuccess}>Excluir</div>
 						</div>
 					</div>
 				</div>
 			</Modal>
+			{/* MODAL DELETE SUCCESS */}
+			<Modal 
+          isOpen={modalDeleteSucess} 
+          onRequestClose={handleCloseModalDelSuccess}
+          style={modalDeleteSuccessCustomStyles} 
+          ariaHideApp={false}
+          >
+          <div className="modal-success">
+					<div className="fechar" onClick={handleCloseModalDelSuccess}>
+						<div className="bt-icon">
+							<IconClose/>
+						</div>
+					</div>
+            <div className="body">
+              <h1>Naver excluído</h1>
+              <div className='mt-20'>Naver excluído com sucesso!</div>
+            </div>
+				  </div>
+        </Modal>
 			</div>
 			)
 	}
@@ -224,7 +274,7 @@ const [loading, setLoading] = useState(true)
 
     return(
       (!loading && navers.length <= 0) ? <NoNavers/> :
-			(!loading) ? <NaversSuccess/> : <div>Buscando ...</div>
+			(!loading) ? <NaversSuccess/> : <div>Buscando Navers...</div>
     )
   }
 

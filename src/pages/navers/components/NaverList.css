@@ -92,6 +92,10 @@
   right: 1rem;
 }
 
+.modal-delete .actions {
+  justify-content: right;
+}
+
 @media (max-width: 1200px) {
   .naver-list {
     grid-template-columns: 1fr 1fr 1fr;

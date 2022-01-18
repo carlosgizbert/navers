@@ -47,15 +47,7 @@
   justify-content: right;
 }
 
-.submit .bt-primary {
-  width: 176px;
-}
-
 /* modal success */
-.modal-success {
-  padding: 3rem;
-  position: relative;
-}
 
 .modal-success .fechar {
   float: right;

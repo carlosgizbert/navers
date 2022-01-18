@@ -57,7 +57,7 @@ const modalCustomStyles = {
     width: '592px',
     height: 'auto',
     borderRadius: '0'
-  },
+  }
 }
 
 const handleOpenModal = () => {
