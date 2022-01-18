@@ -3,8 +3,9 @@
   ---color-primary-purple-10: #410083;
   ---color-neutral-dark-00: #212121;
 
-  ---shadow-00: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
-  ---shadow-10: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  ---shadow-00: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  ---shadow-10: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
 
 body {

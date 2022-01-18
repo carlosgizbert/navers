@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import './createNaver.css'
+import React, { useState, useEffect } from 'react'
+import './EditNaver.css'
 import Header from '../components/Header'
 import { Form, Formik, Field } from 'formik'
 import {ReactComponent as BtVoltar} from '../../components/svg/BtVoltar.svg'
 import { ReactComponent as IconClose }from '../../components/svg/icon-x.svg'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import api from '../../../api'
 import Modal from 'react-modal';
 
@@ -17,19 +17,52 @@ const initialState = {
   url: '',
 }
 
-const CreateNaver = () => {
-  const [values, setValues] = useState(initialState)
-  const [modalSuccess, setModalSuccess] = useState(false)
+
+
+const EditNaver = () => {
   
+  const [modalSuccess, setModalSuccess] = useState(false)
+  const [naver, setNaver] = useState(initialState)
+
+  // naverId params
+  const { id } = useParams();
+
+  const token = localStorage.getItem('token')
+  const getNaver = async () => {
+  await api.get('/navers/'+id , { headers: {"Authorization" : `Bearer ${token}`} })
+  .then(res => {
+    const { data } = res
+    if(data){
+    data.birthdate = isoToYear(data.birthdate)
+    setNaver(data)
+    }
+  })
+}
+
+  useEffect(() => {
+    getNaver()
+  }, [])
+    
+
   const onChange = (e) =>{
     const {name, value } = e.target
-    setValues({ ...values, [name]: value})
+    setNaver({ ...naver, [name]: value})
   }
 
-  const handleCreate = e => {
+  const isoToYear = (birthdateIso) => {
+    birthdateIso = parseInt(birthdateIso.toString().substring(0, 10))
+    const currentYear = new Date().getFullYear()
+    const age =  currentYear - birthdateIso
+    return age
+  }
+
+  const updateNaver = () => {
     const token = localStorage.getItem('token')
 
-    api.post('/navers', values, { headers: {"Authorization" : `Bearer ${token}`} })
+    delete naver['id']
+    delete naver['user_id']
+
+    api.put('/navers/'+id, naver, { headers: {"Authorization" : `Bearer ${token}`} })
     .then(res => 
       {
         const { data } = res
@@ -42,6 +75,10 @@ const CreateNaver = () => {
       handleCloseModal(e)
       console.log('Erro ao cadatrar !! '+e)
     })
+  }
+
+  const handleUpdate = () => {
+    updateNaver()
   }
 
 
@@ -80,34 +117,34 @@ const handleCloseModal = (e) => {
           <Link to="/navers">
           <div className="bt-icon bt-voltar"><BtVoltar/></div>
           </Link>
-          <h1>Adicionar Naver</h1>
+          <h1>Editar Naver</h1>
         </div>
-        <Formik initialValues={{}} onSubmit={handleCreate}>
+        <Formik initialValues={{naver}} onSubmit={handleUpdate}>
           <Form>
           <div className="fields">
             <div>
               <span htmlFor="nome">Nome</span>
-              <Field className="field" type="text" name="name" placeholder="Nome" onChange={onChange}></Field>
+              <Field className="field" type="text" name="name" placeholder="Nome" value={naver.name} onChange={onChange}></Field>
             </div>
             <div>
               <span htmlFor="job_role">Cargo</span>
-              <Field className="field" type="text" name="job_role" placeholder="Cargo" onChange={onChange}></Field>
+              <Field className="field" type="text" name="job_role" placeholder="Cargo" value={naver.job_role} onChange={onChange}></Field>
             </div>
             <div>
               <span htmlFor="birthdate">Idade</span>
-              <Field className="field" type="text" name="birthdate" placeholder="Idade" onChange={onChange}></Field>
+              <Field className="field" type="text" name="birthdate" placeholder="Idade" value={naver.birthdate} onChange={onChange}></Field>
             </div>
             <div>
-              <span htmlFor="admission_date">Tempo de empresa (Em anos)</span>
-              <Field className="field" type="number" name="admission_date" placeholder="Tempo de empresa" onChange={onChange}></Field>
+              <span htmlFor="admission_date">Tempo de empresa</span>
+              <Field className="field" type="text" name="admission_date" placeholder="Tempo de empresa" value={naver.admission_date} onChange={onChange}></Field>
             </div>
             <div>
               <span htmlFor="project">Projetos que participou</span>
-              <Field className="field" type="text" name="project" placeholder="Projetos que participou" onChange={onChange}></Field>
+              <Field className="field" type="text" name="project" placeholder="Projetos que participou" value={naver.project} onChange={onChange}></Field>
             </div>
             <div>
               <span htmlFor="url">URL da foto do Naver</span>
-              <Field className="field" type="text" name="url" placeholder="URL da foto do Naver" onChange={onChange}></Field>
+              <Field className="field" type="text" name="url" placeholder="URL da foto do Naver" value={naver.url} onChange={onChange}></Field>
             </div>
           </div>
           <div className="submit">
@@ -128,8 +165,8 @@ const handleCloseModal = (e) => {
               </div>
             </Link>
             <div className="body">
-              <h1>Naver criado</h1>
-              <span>Naver criado com sucesso!</span>
+              <h1>Naver atualizado</h1>
+              <span>{naver.name} atualizado com sucesso!</span>
             </div>
 				  </div>
         </Modal>
@@ -138,4 +175,4 @@ const handleCloseModal = (e) => {
   )
 }
 
-export default CreateNaver
+export default EditNaver

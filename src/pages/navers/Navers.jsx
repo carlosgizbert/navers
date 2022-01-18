@@ -11,7 +11,7 @@ const Navers = () => {
       <div className="wrapper">
         <div className="title">
           <h1>Navers</h1>
-          <Link to="/adicionar">
+          <Link to="/navers/adicionar">
             <div className="bt bt-primary">Adicionar Naver</div>
           </Link>
         </div>
