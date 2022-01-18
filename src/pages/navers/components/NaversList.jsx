@@ -11,7 +11,7 @@ const CardsNavers = () => {
 const [modalNaver, setModalNaver] = useState(false)
 const [modalDelete, setModalDelete] = useState(false)
 const [modalDeleteSucess, setModalDeleteSuccess] = useState(false)
-const [clickedModal, setClickedModal] = useState(null)
+const [currentNaver, setCurrentNaver] = useState(null)
 const [loading, setLoading] = useState(true)
 const [navers, setNavers] = useState([])
 
@@ -50,7 +50,7 @@ const [navers, setNavers] = useState([])
 	}
 
 	const handleOpenModalNaver = (naverId) => {
-		setClickedModal(naverId)
+		setCurrentNaver(naverId)
     setModalNaver(true)
   }
 
@@ -93,6 +93,7 @@ const [navers, setNavers] = useState([])
 	}
 
 	const handleOpenModalDelete = (naverId) => {
+		setCurrentNaver(naverId)
     setModalDelete(true)
 		setModalNaver(false)
   }
@@ -158,7 +159,7 @@ const [navers, setNavers] = useState([])
 				</div>
 				<Modal
 			name="details-naver" 
-			isOpen={modalNaver && naver.id === clickedModal} 
+			isOpen={modalNaver && naver.id === currentNaver} 
 			onRequestClose={handleCloseModalNaver}
 			style={modalNaverCustomStyles} 
 			ariaHideApp={false}
@@ -195,7 +196,7 @@ const [navers, setNavers] = useState([])
 	
 			<Modal
 			name="details-naver" 
-			isOpen={modalNaver && naver.id === clickedModal} 
+			isOpen={modalNaver && naver.id === currentNaver} 
 			onRequestClose={handleCloseModalNaver}
 			style={modalNaverCustomStyles} 
 			ariaHideApp={false}
@@ -239,7 +240,7 @@ const [navers, setNavers] = useState([])
 			</Modal>
 			{/* MODAL CONFIRM DELETE */}
 			<Modal 
-				isOpen={modalDelete} 
+				isOpen={modalDelete && naver.id === currentNaver} 
 				onRequestClose={handleCloseModalDelete}
 				style={modalDeleteCustomStyles} 
 				ariaHideApp={false}
@@ -247,7 +248,7 @@ const [navers, setNavers] = useState([])
 				<div className="modal-delete">
 					<div className="body">
 						<h1>Excluir Naver</h1>
-						<span>Tem certeza que deseja excluir {naver.name}?</span>
+						<span>Tem certeza que deseja excluir <b>{naver.name}</b>?</span>
 						<div className='actions mt-20'>
 						<div className="bt bt-secondary" onClick={handleCloseModalDelete}>Cancelar</div>
 						<div className="bt bt-primary" onClick={e => deleteNaver(naver.id)}>Excluir</div>
@@ -290,7 +291,7 @@ const [navers, setNavers] = useState([])
 	}
 
     return(
-      (!loading && navers.length <= 0) ? <NoNavers/> :
+      (!loading && navers.length < 0) ? <NoNavers/> :
 			(!loading) ? <NaversSuccess/> : <div>Buscando Navers...</div>
     )
   }

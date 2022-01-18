@@ -1,5 +1,6 @@
 :root {
   ---color-primary-purple-00: #6600ca;
+  ---color-primary-purple-10: #410083;
   ---color-neutral-dark-00: #212121;
 
   ---shadow-00: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
@@ -62,6 +63,7 @@ a {
 }
 
 .bt-primary:hover {
+  background-color: #410083;
   box-shadow: var(---shadow-10);
 }
 
@@ -85,5 +87,5 @@ a {
 
 .bt-secondary:hover {
   color: white;
-  background-color: var(---color-primary-purple-00);
+  background-color: var(---color-primary-purple-10);
 }
