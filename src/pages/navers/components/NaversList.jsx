@@ -16,16 +16,16 @@ const [loading, setLoading] = useState(true)
 const [navers, setNavers] = useState([])
 
 	const token = localStorage.getItem('token')
-
-	useEffect(() => {
-		const getNavers = async () => {
+	const getNavers = async () => {
 		await api.get('/navers' , { headers: {"Authorization" : `Bearer ${token}`} })
 		.then(res => {
 			const { data } = res
 			setNavers(data)
 			setLoading(false)
 		})
-		} 
+	} 
+
+	useEffect(() => {
 	getNavers()
 	}, [])
 
@@ -247,7 +247,7 @@ const [navers, setNavers] = useState([])
 				<div className="modal-delete">
 					<div className="body">
 						<h1>Excluir Naver</h1>
-						<span>Tem certeza que deseja excluir este Naver?</span>
+						<span>Tem certeza que deseja excluir {naver.name}?</span>
 						<div className='actions mt-20'>
 						<div className="bt bt-secondary" onClick={handleCloseModalDelete}>Cancelar</div>
 						<div className="bt bt-primary" onClick={e => deleteNaver(naver.id)}>Excluir</div>

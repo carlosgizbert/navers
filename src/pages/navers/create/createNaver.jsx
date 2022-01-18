@@ -52,7 +52,7 @@ const modalCustomStyles = {
     right: 'auto',
     bottom: 'auto',
     transform: 'translate(-50%, -50%)',
-    padding: '0',
+    padding: '2rem',
     border: 'none',
     margin: '0',
     width: '592px',
