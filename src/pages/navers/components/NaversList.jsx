@@ -129,7 +129,6 @@ const navigate = useNavigate();
 	}
 	
 	const handleCloseModalDelSuccess = () =>{
-		setModalDeleteSuccess(false)
 		navigate('/navers')
 	}
 
