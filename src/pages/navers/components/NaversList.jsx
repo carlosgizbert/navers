@@ -133,7 +133,7 @@ const navigate = useNavigate();
 	}
 
 	const replaceBrokenImage = (e) => {
-		e.target.src = 'https://images.unsplash.com/photo-1533241818630-edad657eb3da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80'
+		e.target.src = 'https://nave-site-staging.herokuapp.com/static/75495d65bb7ed08072080923c0af4bf2/f3dec/careers1.png'
 	}
 
 	const handleOpenEditNaver = (naverId) => {
