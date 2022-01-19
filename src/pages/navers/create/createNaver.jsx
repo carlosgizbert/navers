@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './createNaver.css'
 import Header from '../components/Header'
-import { Form, Formik, Field } from 'formik'
+import { Form, Formik } from 'formik'
 import { TextField } from '../../components/textfield/TextField'
 import {ReactComponent as BtVoltar} from '../../components/svg/BtVoltar.svg'
 import { ReactComponent as IconClose }from '../../components/svg/icon-x.svg'
