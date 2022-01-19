@@ -144,6 +144,14 @@
   justify-content: center;
 }
 
+.bt-icon path {
+  fill: var(---color-neutral-dark-00);
+}
+
+.bt-icon:hover path {
+  fill: var(---color-primary-purple-00);
+}
+
 .bt-icon:hover {
   background-color: rgb(233, 233, 233);
   border-radius: 2px;
