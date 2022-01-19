@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import Modal from 'react-modal';
 import './NaverList.css';
 import api from '../../../api';
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { ReactComponent as IconEdit } from '../../components/svg/icon-edit.svg'
 import { ReactComponent as IconRemove }from '../../components/svg/icon-trash.svg'
 import { ReactComponent as IconClose }from '../../components/svg/icon-x.svg'
@@ -16,7 +16,7 @@ const [loading, setLoading] = useState(true)
 const [navers, setNavers] = useState([])
 const navigate = useNavigate();
 
-	const token = localStorage.getItem('token')
+const token = localStorage.getItem('token')
 
 	useEffect(() => {
 		const getNavers = async () => {
@@ -28,7 +28,7 @@ const navigate = useNavigate();
 			})
 		} 
 	getNavers()
-	}, [])
+	}, [token])
 
 	// modal naver - refatorar
 	const modalNaverCustomStyles = {
