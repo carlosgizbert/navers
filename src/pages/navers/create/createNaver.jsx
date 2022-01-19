@@ -73,7 +73,6 @@ const modalCustomStyles = {
     padding: '2rem',
     border: 'none',
     margin: '0',
-    width: '592px',
     height: 'auto',
     borderRadius: '0'
   },

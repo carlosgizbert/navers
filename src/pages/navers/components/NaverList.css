@@ -40,40 +40,40 @@
   font-weight: bold;
 }
 
-.modal {
+.modal-naver {
   display: flex;
   column-gap: 2rem;
-  margin-right: 2rem;
   height: 80vh;
+  max-height: 80vh;
 }
 
-.modal .image-wrapper {
+.modal-naver .image-wrapper {
   width: 50%;
 }
 
-.modal .img {
+.modal-naver .img {
   width: 100%;
   height: 100%;
 }
 
-.modal .details-naver {
+.modal-naver .details-naver {
   margin-top: 2rem;
   display: flex;
   flex-direction: column;
   row-gap: 1.5rem;
 }
 
-.modal .body {
+.modal-naver .body {
   display: flex;
   flex-direction: column;
   position: relative;
 }
 
-.modal .body span {
+.modal-naver .body span {
   font-weight: 600;
 }
 
-.modal .body .name {
+.modal-naver .body .name {
   font-size: 1.5rem;
   font-weight: 600;
   color: var(---color-primary-purple-00);
@@ -84,15 +84,19 @@
   gap: 1rem;
 }
 
-.modal .body .actions {
+.modal-naver .body .actions {
   position: absolute;
   bottom: 1.5rem;
 }
 
-.modal .fechar {
+.modal-naver .fechar {
   position: absolute;
   top: 0.5rem;
   right: 1rem;
+}
+
+.modal-delete {
+  width: 572px;
 }
 
 .modal-delete .actions {
@@ -110,24 +114,48 @@
     grid-template-columns: 1fr 1fr;
   }
 
-  .modal {
+  .modal-naver {
     display: flex;
     flex-direction: column;
+    width: 80vw;
+    height: 60vh;
   }
 
-  .modal .image-wrapper {
+  .modal-naver .image-wrapper {
     width: 100%;
-    height: 120px;
+    height: 30%;
   }
 
-  .modal .details-naver {
+  .modal-naver .details-naver {
     margin: 1rem 2rem;
   }
 
-  .modal .body {
+  .modal-naver .body {
     display: flex;
     flex-direction: column;
     position: relative;
+    height: 100%;
+  }
+
+  .modal-naver .body .actions {
+    bottom: 1.5rem;
+    left: 2rem;
+  }
+
+  .modal-delete .actions {
+    display: flex;
+    flex-direction: column;
+  }
+  .modal-success .actions {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modal-delete {
+    width: 80vw;
+  }
+  .modal-success {
+    width: 80vw;
   }
 }
 
@@ -160,5 +188,9 @@
 @media (max-width: 414px) {
   .naver-list {
     grid-template-columns: 1fr;
+  }
+  .modal-naver {
+    width: 90vw;
+    height: 70vh;
   }
 }

@@ -41,8 +41,6 @@ const token = localStorage.getItem('token')
 			padding: '0',
 			border: 'none',
 			margin: '0',
-			width: '50vw',
-			minHeight: '60vh',
 			borderRadius: '0',
 		},
 		overlay: {
@@ -83,7 +81,6 @@ const token = localStorage.getItem('token')
 			padding: '2rem',
 			border: 'none',
 			margin: '0',
-			width: '592px',
 			height: 'auto',
 			borderRadius: '0',
 		},
@@ -113,7 +110,6 @@ const token = localStorage.getItem('token')
 			padding: '2rem 2rem 3rem 2rem',
 			border: 'none',
 			margin: '0',
-			width: '592px',
 			height: 'auto',
 			borderRadius: '0'
 		},
@@ -175,7 +171,7 @@ const token = localStorage.getItem('token')
 			style={modalNaverCustomStyles} 
 			ariaHideApp={false}
 			>
-				<div className="modal">
+				<div className="modal-naver">
 					<section className="image-wrapper">
 					<img className="img" onError={replaceBrokenImage} alt={naver.name} src={naver.url}></img>
 					</section>
