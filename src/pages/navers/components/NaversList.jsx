@@ -28,7 +28,7 @@ const navigate = useNavigate();
 			})
 		} 
 	getNavers()
-	}, [token])
+	}, [])
 
 	// modal naver - refatorar
 	const modalNaverCustomStyles = {
@@ -129,7 +129,6 @@ const navigate = useNavigate();
 	
 	const handleCloseModalDelSuccess = () =>{
 		setModalDeleteSuccess(false)
-		navigate('/navers')
 	}
 
 	const replaceBrokenImage = (e) => {
