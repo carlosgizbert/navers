@@ -49,6 +49,7 @@ const Login = () => {
       }}
       validationSchema={validate}
       onSubmit={values => onSubmit(values)}
+      enableReinitialize // precisa para o form atualizar dados(initialValues) da promise
     >
       {formik => (
         <div>

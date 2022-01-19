@@ -14,13 +14,13 @@ import * as Yup from 'yup'
 
 const validate = Yup.object({
   name: Yup.string()
-  .min(6, 'Digite um nome maior')
-  .max(15, 'Digite 15 caracteres ou menos')
+  .min(3, 'Digite um nome maior')
+  .max(120, 'Digite 15 caracteres ou menos')
   .required('Insira o nome'),
 
   job_role: Yup.string()
   .min(3, 'Digite um Cargo com nome maior')
-  .max(15, 'Digite 15 caracteres ou menos')
+  .max(40, 'Digite 15 caracteres ou menos')
   .required('Digite o cargo'),
 
   birthdate: Yup.number()
@@ -37,12 +37,22 @@ const validate = Yup.object({
   .max(40, 'Digite 40 caracteres ou menos')
   .required('Insira um projeto'),
 
-  url: Yup.string().url('Insira uma URL válida (http:// ...)').required('Insira uma url')
+  url: Yup.string()
+  .url('Insira uma URL válida (http:// ...)')
+  .required('Insira uma url')
 })
+
+const initialFormValues = {
+  name: '',
+  job_role: '',
+  birthdate: '',
+  admission_date: '',
+  project: '',
+  url: '',
+}
 
 const CreateNaver = () => {
   const [modalSuccess, setModalSuccess] = useState(false)
-
 
   const ageToDate = (num) => {
     const check = moment(new Date(), 'YYYY/MM/DD');
@@ -53,15 +63,14 @@ const CreateNaver = () => {
   
     const year = (currentYear - num)
     const completeYear = `${currentDay}/${currentMonth}/${year}`
-    console.log(completeYear)
     return completeYear
   }
 
   const handleCreate = (values) => {
     const token = localStorage.getItem('token')
 
-    values.birthdate = ageToDate(values.birthdate)
-    values.admission_date = ageToDate(values.admission_date)
+    values['birthdate'] = ageToDate(values.birthdate)
+    values['admission_date'] = ageToDate(values.admission_date)
 
     api.post('/navers', values, { headers: {"Authorization" : `Bearer ${token}`} })
     .then(res => 
@@ -116,14 +125,7 @@ const handleCloseModal = (e) => {
           <h1>Adicionar Naver</h1>
         </div>
         <Formik 
-        initialValues={{
-          name: '',
-          job_role: '',
-          birthdate: '',
-          admission_date: '',
-          project: '',
-          url: '',
-        }} 
+        initialValues={initialFormValues} 
         validationSchema={validate}
         onSubmit={values => handleCreate(values)}>
 

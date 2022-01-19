@@ -9,23 +9,50 @@ import { Link, useParams } from 'react-router-dom'
 import api from '../../../api'
 import Modal from 'react-modal';
 import moment from 'moment'
+import * as Yup from 'yup'
 
+const validate = Yup.object({
+  name: Yup.string()
+  .min(3, 'Digite um nome maior')
+  .max(120, 'Digite 15 caracteres ou menos')
+  .required('Insira o nome'),
 
-const initialState = {
-  name: '',
-  job_role: '',
-  birthdate: '',
-  admission_date: '',
-  project: '',
-  url: '',
-}
+  job_role: Yup.string()
+  .min(3, 'Digite um Cargo com nome maior')
+  .max(40, 'Digite 15 caracteres ou menos')
+  .required('Digite o cargo'),
 
+  birthdate: Yup.number()
+  .min(18, 'Navers devem possuir 18 anos ou mais')
+  .max(80, 'Esse naver precisa aposentar para curtir a vida!')
+  .required('Insira a idade'),
 
+  admission_date: Yup.number()
+  .min(0, 'Digite um Cargo com nome maior')
+  .max(5, 'Nave existe há apenas 5 anos')
+  .required('Insira o tempo de empresa'),
+
+  project: Yup.string()
+  .max(40, 'Digite 40 caracteres ou menos')
+  .required('Insira um projeto'),
+
+  url: Yup.string()
+  .url('Insira uma URL válida (http:// ...)')
+  .required('Insira uma url')
+})
 
 const EditNaver = () => {
   
   const [modalSuccess, setModalSuccess] = useState(false)
-  const [naver, setNaver] = useState(initialState)
+  
+  const [naver, setNaver] = useState({
+  name: 'AAAA',
+  job_role: '',
+  birthdate: '',
+  admission_date: '',
+  project: '',
+  url: ''
+  })
 
   // captura id da url
   const { id } = useParams();
@@ -48,11 +75,6 @@ const EditNaver = () => {
     getNaver()
   }, [])
     
-
-  const onChange = (e) =>{
-    let {name, value } = e.target
-    setNaver({ ...naver, [name]: value})
-  }
   
 
   const isoToYear = (birthdateIso) => {
@@ -73,16 +95,16 @@ const EditNaver = () => {
     return completeDate
   }
 
-  const updateNaver = () => {
+  const updateNaver = (values) => {
     const token = localStorage.getItem('token')
 
     // remove propriedades invalidas ao rest e converte datas para iso antes de enviar pro backend
-    delete naver['id']
-    delete naver['user_id']
-    naver['birthdate'] = ageToDate(naver['birthdate']) 
-    naver['admission_date'] = ageToDate(naver['admission_date']) 
+    delete values['id']
+    delete values['user_id']
+    values['birthdate'] = ageToDate(values['birthdate']) 
+    values['admission_date'] = ageToDate(values['admission_date']) 
 
-    api.put('/navers/'+id, naver, { headers: {"Authorization" : `Bearer ${token}`} })
+    api.put('/navers/'+id, values, { headers: {"Authorization" : `Bearer ${token}`} })
     .then(res => 
       {
         const { data } = res
@@ -95,10 +117,6 @@ const EditNaver = () => {
       handleCloseModal(e)
       console.log('Erro ao cadatrar !! '+e)
     })
-  }
-
-  const handleUpdate = () => {
-    updateNaver()
   }
 
 
@@ -139,63 +157,58 @@ const handleCloseModal = (e) => {
           </Link>
           <h1>Editar Naver</h1>
         </div>
-        <Formik initialValues={{naver}} onSubmit={handleUpdate}>
+        <Formik 
+        enableReinitialize // precisa para o form atualizar dados(initialValues) da promise
+        initialValues={naver} 
+        validationSchema={validate}
+        onSubmit={values => updateNaver(values)}>
 
-        <Form>
+        {formik => (
+          <Form>
           <div className="fields">
           <TextField 
               type="text" 
               name="name" 
               label="Nome" 
-              placeholder="Nome" 
-              value={naver.name}
-              onChange={onChange}/>
+              placeholder="Nome"/>
 
               <TextField 
               type="text" 
               name="job_role" 
               label="Cargo" 
-              placeholder="Cargo" 
-              value={naver.job_role}
-              onChange={onChange}/>
+              placeholder="Cargo"/>
 
               <TextField 
               type="number" 
               name="birthdate" 
               label="Idade" 
-              placeholder="Idade" 
-              value={naver.birthdate}
-              onChange={onChange}/>
+              placeholder="Idade"/>
 
               <TextField 
               type="number" 
               name="admission_date" 
               label="Tempo de empresa (Em anos)" 
-              placeholder="Tempo de empresa" 
-              value={naver.admission_date}
-              onChange={onChange}/>
+              placeholder="Tempo de empresa"/>
 
               <TextField 
               type="text" 
               name="project" 
               label="Projetos que participou" 
-              placeholder="Projetos que participou"
-              value={naver.project}
-              onChange={onChange}/>
+              placeholder="Projetos que participou"/>
 
               <TextField
               type="text" 
               name="url" 
               label="URL da foto do Naver" 
-              placeholder="URL da foto do Naver" 
-              value={naver.url}
-              onChange={onChange}/>
+              placeholder="URL da foto do Naver"/>
           </div>
           <div className="submit mt-10">
-          <button type="submit" className="bt bt-primary" value="Salvar">Salvar</button>
+          <button type="submit" className="bt bt-primary">Salvar</button>
           </div>
 
           </Form>
+        )}
+
         </Formik>
         <Modal 
           isOpen={modalSuccess} 
