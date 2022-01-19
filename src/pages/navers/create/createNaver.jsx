@@ -3,34 +3,46 @@ import './createNaver.css'
 import Header from '../components/Header'
 import { Form, Formik } from 'formik'
 import { TextField } from '../../components/textfield/TextField'
-import {ReactComponent as BtVoltar} from '../../components/svg/BtVoltar.svg'
+import { ReactComponent as BtVoltar } from '../../components/svg/BtVoltar.svg'
 import { ReactComponent as IconClose }from '../../components/svg/icon-x.svg'
 import { Link } from 'react-router-dom'
 import api from '../../../api'
 import Modal from 'react-modal';
 import moment from 'moment'
+import * as Yup from 'yup'
 
-const initialState = {
-  name: '',
-  job_role: '',
-  birthdate: '',
-  admission_date: '',
-  project: '',
-  url: '',
-}
+
+const validate = Yup.object({
+  name: Yup.string()
+  .min(6, 'Digite um nome maior')
+  .max(15, 'Digite 15 caracteres ou menos')
+  .required('Insira o nome'),
+
+  job_role: Yup.string()
+  .min(3, 'Digite um Cargo com nome maior')
+  .max(15, 'Digite 15 caracteres ou menos')
+  .required('Digite o cargo'),
+
+  birthdate: Yup.number()
+  .min(18, 'Navers devem possuir 18 anos ou mais')
+  .max(80, 'Esse naver precisa aposentar para curtir a vida!')
+  .required('Insira a idade'),
+
+  admission_date: Yup.number()
+  .min(0, 'Digite um Cargo com nome maior')
+  .max(5, 'Nave existe há apenas 5 anos')
+  .required('Insira o tempo de empresa'),
+
+  project: Yup.string()
+  .max(40, 'Digite 40 caracteres ou menos')
+  .required('Insira um projeto'),
+
+  url: Yup.string().url('Insira uma URL válida (http:// ...)').required('Insira uma url')
+})
 
 const CreateNaver = () => {
-  const [values, setValues] = useState(initialState)
   const [modalSuccess, setModalSuccess] = useState(false)
-  
-  const onChange = (e) => {
-    let { name, value } = e.target
-    // converte idade em data nascimento
-    name === 'birthdate' ? value = ageToDate(value) : value = value
-    name === 'admission_date' ? value = ageToDate(value) : value = value 
-    console.log(values)
-    setValues({ ...values, [name]: value})
-  }
+
 
   const ageToDate = (num) => {
     const check = moment(new Date(), 'YYYY/MM/DD');
@@ -45,8 +57,11 @@ const CreateNaver = () => {
     return completeYear
   }
 
-  const handleCreate = e => {
+  const handleCreate = (values) => {
     const token = localStorage.getItem('token')
+
+    values.birthdate = ageToDate(values.birthdate)
+    values.admission_date = ageToDate(values.admission_date)
 
     api.post('/navers', values, { headers: {"Authorization" : `Bearer ${token}`} })
     .then(res => 
@@ -100,57 +115,63 @@ const handleCloseModal = (e) => {
           </Link>
           <h1>Adicionar Naver</h1>
         </div>
-        <Formik initialValues={{}} onSubmit={handleCreate}>
+        <Formik 
+        initialValues={{
+          name: '',
+          job_role: '',
+          birthdate: '',
+          admission_date: '',
+          project: '',
+          url: '',
+        }} 
+        validationSchema={validate}
+        onSubmit={values => handleCreate(values)}>
 
+        {formik => (
           <Form>
           <div className="fields">
           <TextField 
               type="text" 
               name="name" 
               label="Nome" 
-              placeholder="Nome" 
-              onChange={onChange}/>
+              placeholder="Nome"/>
 
               <TextField 
               type="text" 
               name="job_role" 
               label="Cargo" 
-              placeholder="Cargo" 
-              onChange={onChange}/>
+              placeholder="Cargo"/>
 
               <TextField 
               type="number" 
               name="birthdate" 
               label="Idade" 
-              placeholder="Idade" 
-              onChange={onChange}/>
+              placeholder="Idade"/>
 
               <TextField 
               type="number" 
               name="admission_date" 
               label="Tempo de empresa (Em anos)" 
-              placeholder="Tempo de empresa" 
-              onChange={onChange}/>
+              placeholder="Tempo de empresa"/>
 
               <TextField 
               type="text" 
               name="project" 
               label="Projetos que participou" 
-              placeholder="Projetos que participou" 
-              onChange={onChange}/>
+              placeholder="Projetos que participou"/>
 
               <TextField
               type="text" 
               name="url" 
               label="URL da foto do Naver" 
-              placeholder="URL da foto do Naver" 
-              onChange={onChange}/>
+              placeholder="URL da foto do Naver"/>
           </div>
           <div className="submit mt-10">
           <button type="submit" className="bt bt-primary" value="Salvar">Salvar</button>
           </div>
-
           </Form>
+        )}
+
         </Formik>
         <Modal 
           isOpen={modalSuccess} 
