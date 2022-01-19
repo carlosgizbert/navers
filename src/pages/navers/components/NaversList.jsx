@@ -9,7 +9,7 @@ import { ReactComponent as IconClose }from '../../components/svg/icon-x.svg'
 
 const CardsNavers = () => {
 const [modalNaver, setModalNaver] = useState(false)
-const [modalDelete, setModalDelete] = useState(false)
+const [modalConfirmDelete, setModalConfirmDelete] = useState(false)
 const [modalDeleteSucess, setModalDeleteSuccess] = useState(false)
 const [currentNaver, setCurrentNaver] = useState(null)
 const [loading, setLoading] = useState(true)
@@ -55,6 +55,7 @@ const token = localStorage.getItem('token')
 
   const handleCloseModalNaver = () => {
     setModalNaver(false)
+		setModalConfirmDelete(false)
   }
 
 	// axios delete naver
@@ -71,7 +72,7 @@ const token = localStorage.getItem('token')
 	}
 
 	// modal confirm delete - refatorar
-	const modalDeleteCustomStyles = {
+	const modalConfirmDeleteCustomStyles = {
 		content: {
 			top: '50%',
 			left: '50%',
@@ -89,18 +90,18 @@ const token = localStorage.getItem('token')
 		}
 	}
 
-	const handleOpenModalDelete = (naverId) => {
+	const handleOpenModalConfirmDelete = (naverId) => {
 		setCurrentNaver(naverId)
-    setModalDelete(true)
+    setModalConfirmDelete(true)
 		setModalNaver(false)
   }
 
-  const handleCloseModalDelete = () => {
-    setModalDelete(false)
+  const handleCloseModalConfirmDelete = () => {
+    setModalConfirmDelete(false)
   }
 
 	// modal delete success - refatorar
-	const modalDeleteSuccessCustomStyles = {
+	const modalConfirmDeleteSuccessCustomStyles = {
 		content: {
 			top: '50%',
 			left: '50%',
@@ -119,7 +120,7 @@ const token = localStorage.getItem('token')
 	}
 
 	const handleOpenModalDeleteSuccess = () => {
-		setModalDelete(false)
+		setModalConfirmDelete(false)
 		setModalDeleteSuccess(true)
 	}
 	
@@ -160,7 +161,7 @@ const token = localStorage.getItem('token')
 						{naver.job_role}
 					</div>
 					<div className="actions">
-						<div className="bt-icon" onClick={() => handleOpenModalDelete(naver.id)}><IconRemove/></div>
+						<div className="bt-icon" onClick={() => handleOpenModalConfirmDelete(naver.id)}><IconRemove/></div>
 						<div className='bt-icon' onClick={() => handleOpenEditNaver(naver.id)}><IconEdit/></div>
 					</div>
 				</div>
@@ -193,7 +194,7 @@ const token = localStorage.getItem('token')
 						</div>
 					</div>
 					<div className="actions">
-						<div className="bt-icon" onClick={e => handleOpenModalDelete(naver.id)}>
+						<div className="bt-icon" onClick={e => handleOpenModalConfirmDelete(naver.id)}>
 							<IconRemove/>
 						</div>
 						<div className='bt-icon' onClick={e => handleOpenEditNaver(naver.id)}>
@@ -210,9 +211,9 @@ const token = localStorage.getItem('token')
 			</Modal>
 			{/* MODAL CONFIRM DELETE */}
 			<Modal 
-				isOpen={modalDelete && naver.id === currentNaver} 
-				onRequestClose={handleCloseModalDelete}
-				style={modalDeleteCustomStyles} 
+				isOpen={modalConfirmDelete && naver.id === currentNaver} 
+				onRequestClose={handleCloseModalConfirmDelete}
+				style={modalConfirmDeleteCustomStyles} 
 				ariaHideApp={false}
 				>
 				<div className="modal-delete">
@@ -220,7 +221,7 @@ const token = localStorage.getItem('token')
 						<h1>Excluir Naver</h1>
 						<span>Tem certeza que deseja excluir <b>{naver.name}</b>?</span>
 						<div className='actions mt-20'>
-						<div className="bt bt-secondary" onClick={handleCloseModalDelete}>Cancelar</div>
+						<div className="bt bt-secondary" onClick={handleCloseModalConfirmDelete}>Cancelar</div>
 						<div className="bt bt-primary" onClick={e => deleteNaver(naver.id)}>Excluir</div>
 						</div>
 					</div>
@@ -230,7 +231,7 @@ const token = localStorage.getItem('token')
 			<Modal 
           isOpen={modalDeleteSucess} 
           onRequestClose={handleCloseModalDelSuccess}
-          style={modalDeleteSuccessCustomStyles} 
+          style={modalConfirmDeleteSuccessCustomStyles} 
           ariaHideApp={false}
           >
           <div className="modal-success">

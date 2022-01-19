@@ -103,6 +103,10 @@
   justify-content: right;
 }
 
+.modal-success {
+  width: 592px;
+}
+
 @media (max-width: 1200px) {
   .naver-list {
     grid-template-columns: 1fr 1fr 1fr;
