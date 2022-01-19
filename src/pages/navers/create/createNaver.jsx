@@ -25,13 +25,13 @@ const CreateNaver = () => {
   const onChange = (e) => {
     let { name, value } = e.target
     // converte idade em data nascimento
-    name === 'birthdate' ? value = getDateByYear(value) : value = value
-    name === 'admission_date' ? value = getDateByYear(value) : value = value 
+    name === 'birthdate' ? value = ageToDate(value) : value = value
+    name === 'admission_date' ? value = ageToDate(value) : value = value 
     console.log(values)
     setValues({ ...values, [name]: value})
   }
 
-  const getDateByYear = (num) => {
+  const ageToDate = (num) => {
     const check = moment(new Date(), 'YYYY/MM/DD');
   
     const currentMonth = check.format('M');

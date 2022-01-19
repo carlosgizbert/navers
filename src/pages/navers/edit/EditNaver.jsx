@@ -26,7 +26,7 @@ const EditNaver = () => {
   const [modalSuccess, setModalSuccess] = useState(false)
   const [naver, setNaver] = useState(initialState)
 
-  // naverId params
+  // captura id da url
   const { id } = useParams();
   const token = localStorage.getItem('token')
 
@@ -35,8 +35,11 @@ const EditNaver = () => {
       await api.get('/navers/'+id , { headers: {"Authorization" : `Bearer ${token}`} })
       .then(res => {
         const { data } = res
+
+        // converte datas iso da promise em idade para mostrar no form
         if(data){
         data.birthdate = isoToYear(data.birthdate)
+        data.admission_date = isoToYear(data.admission_date)
         setNaver(data)
         }
       })
@@ -47,10 +50,6 @@ const EditNaver = () => {
 
   const onChange = (e) =>{
     let {name, value } = e.target
-    
-    name === 'birthdate' ? value = getDateByYear(value) : value = value
-    name === 'admission_date' ? value = getDateByYear(value) : value = value 
-    
     setNaver({ ...naver, [name]: value})
   }
   
@@ -62,24 +61,25 @@ const EditNaver = () => {
     return age
   }
 
-  const getDateByYear = (num) => {
+  const ageToDate = (num) => {
     const check = moment(new Date(), 'YYYY/MM/DD');
-  
     const currentMonth = check.format('M');
     const currentDay   = check.format('D');
     const currentYear  = check.format('YYYY');
-  
     const year = (currentYear - num)
-    const completeYear = `${currentDay}/${currentMonth}/${year}`
-    console.log(completeYear)
-    return completeYear
+    const completeDate = `${currentDay}/${currentMonth}/${year}`
+    console.log(completeDate)
+    return completeDate
   }
 
   const updateNaver = () => {
     const token = localStorage.getItem('token')
 
+    // remove propriedades invalidas ao rest e converte datas para iso antes de enviar pro backend
     delete naver['id']
     delete naver['user_id']
+    naver['birthdate'] = ageToDate(naver['birthdate']) 
+    naver['admission_date'] = ageToDate(naver['admission_date']) 
 
     api.put('/navers/'+id, naver, { headers: {"Authorization" : `Bearer ${token}`} })
     .then(res => 
