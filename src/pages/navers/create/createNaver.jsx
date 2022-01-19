@@ -140,11 +140,13 @@ const handleCloseModal = (e) => {
           ariaHideApp={false}
           >
           <div className="modal-success">
+					<div className="fechar">
             <Link to="/navers">
-              <div className="fechar">
+              <div className="bt-icon">
                 <IconClose/>
               </div>
             </Link>
+          </div>
             <div className="body">
               <h1>Naver criado</h1>
               <span>Naver criado com sucesso!</span>

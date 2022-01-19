@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Login.css'
 import api from '../../api'
 import { Formik, Form, Field } from 'formik'
@@ -19,6 +19,11 @@ const schema = Yup.object().shape({
 const Login = () => { 
   const [values, setValues] = useState(initialState)
   const navigate = useNavigate();
+  
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    token && navigate('/navers')
+  }, [])
 
   const onChange = (e) =>{
     const {name, value } = e.target
