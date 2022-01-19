@@ -11,7 +11,7 @@ export const TextField = ({ label, ...props }) => {
         className="input"
         {...field} {...props}
       />
-      <ErrorMessage component="div" className="error" name={field.name}/>
+      <ErrorMessage component="div" className="error-msg" name={field.name}/>
     </div>
   )
 }

@@ -41,19 +41,20 @@ const Login = () => {
     <div className="login-page">
       <div className="login-box">
       <div className="logo"><Logo/></div>
+
       <Formik
       initialValues={{
-        email: '',
-        password: ''
+        email: 'testing-user@nave.rs',
+        password: 'nave1234'
       }}
       validationSchema={validate}
       onSubmit={values => onSubmit(values)}
     >
       {formik => (
         <div>
-          <Form className="fields mt-20">
-            <TextField label="Email" name="email" type="email" />
-            <TextField label="Senha" name="password" type="password" />
+          <Form className="fields mt-10">
+            <TextField label="Email" name="email" type="email" placeholder="Insira o email" />
+            <TextField label="Senha" name="password" type="password" placeholder="Insira a senha"/>
             <button className="bt bt-primary mt-10" type="submit">Entrar</button>
           </Form>
         </div>
