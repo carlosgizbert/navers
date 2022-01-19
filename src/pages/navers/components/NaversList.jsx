@@ -41,7 +41,7 @@ const navigate = useNavigate();
 			padding: '0',
 			border: 'none',
 			margin: '0',
-			width: '60vw',
+			width: '50vw',
 			minHeight: '60vh',
 			borderRadius: '0',
 		},
@@ -83,8 +83,7 @@ const navigate = useNavigate();
 			padding: '2rem',
 			border: 'none',
 			margin: '0',
-			width: '100%',
-			maxWidth: '600px',
+			width: '592px',
 			height: 'auto',
 			borderRadius: '0',
 		},
@@ -129,6 +128,7 @@ const navigate = useNavigate();
 	}
 	
 	const handleCloseModalDelSuccess = () =>{
+		setModalDeleteSuccess(false)
 		navigate('/navers')
 	}
 
@@ -139,6 +139,13 @@ const navigate = useNavigate();
 	const handleOpenEditNaver = (naverId) => {
 		navigate('/navers/editar/'+naverId)
 	}
+
+	const isoToYear = (birthdateIso) => {
+    birthdateIso = parseInt(birthdateIso.toString().substring(0, 10))
+    const currentYear = new Date().getFullYear()
+    const age =  currentYear - birthdateIso
+    return age
+  }
 
 	const NaversSuccess = () => {
 		return navers.map(naver => 
@@ -179,11 +186,11 @@ const navigate = useNavigate();
 						<div>{naver.job_role}</div>
 						<div>
 							<span>Idade</span>
-							<div className="mt-00">{naver.birthdate}</div>
+							<div className="mt-00">{isoToYear(naver.birthdate)}</div>
 						</div>
 						<div>
 							<span>Tempo de empresa</span>
-							<div className="mt-00">{naver.admission_date}</div>
+							<div className="mt-00">{isoToYear(naver.admission_date)}</div>
 						</div>
 						<div>
 							<span>Projetos que participou</span>
@@ -239,9 +246,7 @@ const navigate = useNavigate();
 					</div>
             <div className="body">
               <h1>Naver excluído</h1>
-							<Link to="/navers">
-              <div className='mt-20'>Naver excluído com sucesso!</div>
-							</Link>
+							<div className='mt-20'>Naver excluído com sucesso!</div>
             </div>
 				  </div>
         </Modal>
@@ -260,7 +265,7 @@ const navigate = useNavigate();
 
     return(
       (!loading && navers.length <= 0) ? <NoNavers/> :
-			(!loading) ? <NaversSuccess/> : <div>Buscando Navers...</div>
+			(!loading) ? <NaversSuccess/> : <div>Buscando Navers... </div>
     )
   }
 
