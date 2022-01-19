@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './createNaver.css'
 import Header from '../components/Header'
 import { Form, Formik, Field } from 'formik'
+import { TextField } from '../../components/textfield/TextField'
 import {ReactComponent as BtVoltar} from '../../components/svg/BtVoltar.svg'
 import { ReactComponent as IconClose }from '../../components/svg/icon-x.svg'
 import { Link } from 'react-router-dom'
@@ -100,36 +101,55 @@ const handleCloseModal = (e) => {
           <h1>Adicionar Naver</h1>
         </div>
         <Formik initialValues={{}} onSubmit={handleCreate}>
+
           <Form>
           <div className="fields">
-            <div>
-              <span htmlFor="nome">Nome</span>
-              <Field className="field" type="text" name="name" placeholder="Nome" onChange={onChange}></Field>
-            </div>
-            <div>
-              <span htmlFor="job_role">Cargo</span>
-              <Field className="field" type="text" name="job_role" placeholder="Cargo" onChange={onChange}></Field>
-            </div>
-            <div>
-              <span htmlFor="birthdate">Idade</span>
-              <Field className="field" type="number" name="birthdate" placeholder="Idade" onChange={onChange}></Field>
-            </div>
-            <div>
-              <span htmlFor="admission_date">Tempo de empresa (Em anos)</span>
-              <Field className="field" type="number" name="admission_date" placeholder="Tempo de empresa" onChange={onChange}></Field>
-            </div>
-            <div>
-              <span htmlFor="project">Projetos que participou</span>
-              <Field className="field" type="text" name="project" placeholder="Projetos que participou" onChange={onChange}></Field>
-            </div>
-            <div>
-              <span htmlFor="url">URL da foto do Naver</span>
-              <Field className="field" type="text" name="url" placeholder="URL da foto do Naver" onChange={onChange}></Field>
-            </div>
+          <TextField 
+              type="text" 
+              name="name" 
+              label="Nome" 
+              placeholder="Nome" 
+              onChange={onChange}/>
+
+              <TextField 
+              type="text" 
+              name="job_role" 
+              label="Cargo" 
+              placeholder="Cargo" 
+              onChange={onChange}/>
+
+              <TextField 
+              type="number" 
+              name="birthdate" 
+              label="Idade" 
+              placeholder="Idade" 
+              onChange={onChange}/>
+
+              <TextField 
+              type="number" 
+              name="admission_date" 
+              label="Tempo de empresa (Em anos)" 
+              placeholder="Tempo de empresa" 
+              onChange={onChange}/>
+
+              <TextField 
+              type="text" 
+              name="project" 
+              label="Projetos que participou" 
+              placeholder="Projetos que participou" 
+              onChange={onChange}/>
+
+              <TextField
+              type="text" 
+              name="url" 
+              label="URL da foto do Naver" 
+              placeholder="URL da foto do Naver" 
+              onChange={onChange}/>
           </div>
-          <div className="submit">
-          <input type="submit" className="bt bt-primary" value="Salvar"/>
+          <div className="submit mt-10">
+          <button type="submit" className="bt bt-primary" value="Salvar">Salvar</button>
           </div>
+
           </Form>
         </Formik>
         <Modal 

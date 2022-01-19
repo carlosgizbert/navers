@@ -33,30 +33,6 @@ a {
   margin-top: 2rem;
 }
 
-/* fields */
-.fields {
-  display: flex;
-  flex-direction: column;
-}
-
-.field {
-  height: 2.5rem;
-  margin-top: 0.25rem;
-  margin-bottom: 2rem;
-  padding-left: 0.5rem;
-  transition: 0.2s;
-  border: 1px solid var(---color-neutral-dark-00);
-}
-
-.fields span {
-  font-weight: 600;
-}
-
-.field:focus {
-  box-shadow: var(---shadow-00);
-  outline: none;
-}
-
 /* buttons */
 .bt-primary {
   color: white;

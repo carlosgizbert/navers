@@ -129,7 +129,7 @@ const token = localStorage.getItem('token')
 	}
 
 	const replaceBrokenImage = (e) => {
-		e.target.src = 'https://nave-site-staging.herokuapp.com/static/75495d65bb7ed08072080923c0af4bf2/f3dec/careers1.png'
+		e.target.src = 'https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg'
 	}
 
 	const handleOpenEditNaver = (naverId) => {

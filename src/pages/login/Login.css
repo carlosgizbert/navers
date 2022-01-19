@@ -26,19 +26,14 @@
   font-size: 2rem;
 }
 
-.form-erros {
+.form-errors {
   background-color: rgb(255, 131, 131);
   border: 1px solid rgb(255, 92, 92);
   margin-bottom: 1rem;
   font-weight: bold;
 }
 
-.form-erros ul {
+.form-errors ul {
   list-style-type: none;
   padding-left: 1rem;
-}
-
-.form-erros li:not(:last-child) {
-  text-decoration: none;
-  margin-bottom: 0.5rem;
 }
