@@ -15,18 +15,18 @@ const [currentNaver, setCurrentNaver] = useState(null)
 const [loading, setLoading] = useState(true)
 const [navers, setNavers] = useState([])
 const navigate = useNavigate();
-
 const token = localStorage.getItem('token')
 
+	const getNavers = async () => {
+	await api.get('/navers' , { headers: {"Authorization" : `Bearer ${token}`} })
+	.then(res => {
+		const { data } = res
+		setNavers(data)
+		setLoading(false)
+	})
+	} 
 	useEffect(() => {
-		const getNavers = async () => {
-			await api.get('/navers' , { headers: {"Authorization" : `Bearer ${token}`} })
-			.then(res => {
-				const { data } = res
-				setNavers(data)
-				setLoading(false)
-			})
-		} 
+
 	getNavers()
 	}, [token])
 
@@ -63,6 +63,7 @@ const token = localStorage.getItem('token')
 		await api.delete('/navers/'+idNaver, { headers: {"Authorization" : `Bearer ${token}`}}).then(
 		res => {
 			if(res.data){
+				getNavers()
 				handleOpenModalDeleteSuccess()
 			}else{
 				console.log(res)
@@ -126,6 +127,7 @@ const token = localStorage.getItem('token')
 	
 	const handleCloseModalDelSuccess = () =>{
 		setModalDeleteSuccess(false)
+		setNavers(navers)
 	}
 
 	const replaceBrokenImage = (e) => {
@@ -241,7 +243,7 @@ const token = localStorage.getItem('token')
 						</div>
 					</div>
             <div className="body">
-              <h1>Naver excluído</h1>
+              <h1>Naver excluído AAAA</h1>
 							<div className='mt-20'>Naver excluído com sucesso!</div>
             </div>
 				  </div>
