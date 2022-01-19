@@ -3,7 +3,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(---color-primary-purple-00);
+  background: rgb(248, 0, 52);
+  background: linear-gradient(
+    13deg,
+    rgba(248, 0, 52, 1) 0%,
+    rgba(100, 0, 206, 1) 70%,
+    rgba(65, 0, 164, 1) 100%
+  );
 }
 
 .login-box {

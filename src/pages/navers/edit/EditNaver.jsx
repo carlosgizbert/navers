@@ -179,7 +179,7 @@ const handleCloseModal = (e) => {
           >
           <div className="modal-success">
             <Link to="/navers">
-              <div className="fechar">
+              <div className="bt-icon fechar">
                 <IconClose/>
               </div>
             </Link>
