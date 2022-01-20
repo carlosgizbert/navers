@@ -22,7 +22,7 @@ Após clonar o projeto, através do terminal, entre na pasta do projeto e rode o
 ### resultado
 #### <a href="https://navers.vercel.app/" target="_blank">`https://navers.vercel.app/`</a>
 
-![imgur](https://imgur.com/NGCdO11)
+![imgur](https://i.imgur.com/NGCdO11.gif)
  
 ### desenvolvido
 * ✔️ login autenticando à api rest
