@@ -243,7 +243,7 @@ const token = localStorage.getItem('token')
 						</div>
 					</div>
             <div className="body">
-              <h1>Naver excluído AAAA</h1>
+              <h1>Naver excluído</h1>
 							<div className='mt-20'>Naver excluído com sucesso!</div>
             </div>
 				  </div>

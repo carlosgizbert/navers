@@ -46,7 +46,7 @@ const EditNaver = () => {
   const [modalSuccess, setModalSuccess] = useState(false)
   
   const [naver, setNaver] = useState({
-  name: 'AAAA',
+  name: '',
   job_role: '',
   birthdate: '',
   admission_date: '',
