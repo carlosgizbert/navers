@@ -1,4 +1,4 @@
-### Crud de profissionais em ReactJS web
+### crud de profissionais em ReactJS web
 
 ### objetivo da aplicação
 cadastrar, alterar e excluir um cadastro de profissional com base no 
