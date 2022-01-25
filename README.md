@@ -1,7 +1,7 @@
 ### crud de profissionais em ReactJS web
 
 ### objetivo da aplicação
-cadastrar, alterar e excluir um cadastro de profissional com base no 
+cadastrar, alterar e excluir um profissional com base no 
 <a href="https://www.figma.com/file/II8UDFm2uJFZaD0FOPcinP/Teste-Front-End?node-id=0%3A1" target="_blank">protótipo no figma</a>
 
 ### meu objetivo
