@@ -42,6 +42,7 @@ const token = localStorage.getItem('token')
 			border: 'none',
 			margin: '0',
 			borderRadius: '0',
+			backgroundColor: 'var(---color-neutral-light-00)'
 		},
 		overlay: {
 			backgroundColor: 'rgba(0, 0, 0, 0.5)'
@@ -85,6 +86,7 @@ const token = localStorage.getItem('token')
 			margin: '0',
 			height: 'auto',
 			borderRadius: '0',
+			backgroundColor: 'var(---color-neutral-light-00)'
 		},
 		overlay: {
 			backgroundColor: 'rgba(0, 0, 0, 0.2)'
@@ -113,7 +115,8 @@ const token = localStorage.getItem('token')
 			border: 'none',
 			margin: '0',
 			height: 'auto',
-			borderRadius: '0'
+			borderRadius: '0',
+			backgroundColor: 'var(---color-neutral-light-00)'
 		},
 		overlay: {
 			backgroundColor: 'rgba(0, 0, 0, 0.2)'

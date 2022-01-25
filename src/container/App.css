@@ -2,10 +2,13 @@
   ---color-primary-purple-00: #6600ca;
   ---color-primary-purple-10: #410083;
   ---color-neutral-dark-00: #313131;
+  ---color-neutral-light-00: #ffffff;
 
   ---shadow-00: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   ---shadow-10: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+
+  ---border-00: 4px;
 }
 
 body {
@@ -14,7 +17,8 @@ body {
 
 .App {
   margin: 0 auto;
-  background-color: white;
+  height: 100vh;
+  background-color: var(---color-neutral-light-00);
 }
 
 a {
@@ -47,6 +51,7 @@ a {
   min-width: 176px;
   height: 40px;
   border: none;
+  border-radius: var(---border-00);
   display: flex;
   text-align: center;
   align-items: center;
