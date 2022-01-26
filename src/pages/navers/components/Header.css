@@ -14,13 +14,3 @@
 .logo {
   cursor: pointer;
 }
-
-.bt-sair {
-  padding: 0.8rem 1rem;
-  cursor: pointer;
-}
-
-.bt-sair:hover {
-  font-weight: 600;
-  background-color: rgb(233, 233, 233);
-}

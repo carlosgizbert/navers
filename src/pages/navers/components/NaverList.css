@@ -22,7 +22,7 @@
   height: 280px;
   cursor: pointer;
   transition: 0.2s;
-  border-radius: 24px;
+  border-radius: var(---border-10);
 }
 
 .card .img:hover {
@@ -162,32 +162,6 @@
   .modal-success {
     width: 80vw;
   }
-}
-
-.bt-icon {
-  cursor: pointer;
-  padding: 0.5rem;
-  height: 1.5rem;
-  width: 1.5rem;
-  display: -webkit-flex; /* Safari */
-  display: flex;
-  -webkit-align-items: center; /* Safari 7.0+ */
-  align-items: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-}
-
-.bt-icon path {
-  fill: var(---color-neutral-dark-00);
-}
-
-.bt-icon:hover path {
-  fill: var(---color-primary-purple-00);
-}
-
-.bt-icon:hover {
-  background-color: rgb(233, 233, 233);
-  border-radius: 2px;
 }
 
 @media (max-width: 414px) {

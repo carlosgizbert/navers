@@ -14,7 +14,7 @@ const Header = () => {
     <Link to="/navers">
     <div className="logo"><LogoNave/></div>
     </Link>
-    <div className="bt-sair" onClick={handleLogout}>Sair</div>
+    <div className="bt-icon pd-10" onClick={handleLogout}>Sair</div>
   </header>
   )
 }

@@ -9,6 +9,7 @@
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 
   ---border-00: 4px;
+  ---border-10: 8px;
 }
 
 body {
@@ -37,6 +38,18 @@ a {
   margin-top: 2rem;
 }
 
+/* paddings */
+
+.pd-10 {
+  padding: 1rem;
+}
+.pl-10 {
+  padding-left: 2rem;
+}
+.pr-10 {
+  padding-right: 2rem;
+}
+
 /* buttons */
 .bt-primary {
   color: white;
@@ -50,7 +63,6 @@ a {
 .bt {
   min-width: 176px;
   height: 40px;
-  border: none;
   border-radius: var(---border-00);
   display: flex;
   text-align: center;
@@ -73,4 +85,29 @@ a {
 .bt-secondary:hover {
   color: white;
   background-color: var(---color-primary-purple-10);
+}
+
+/* bt icon */
+.bt-icon {
+  cursor: pointer;
+  padding: 1rem;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  -webkit-align-items: center; /* Safari 7.0+ */
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  border-radius: var(---border-10);
+}
+
+.bt-icon path {
+  fill: var(---color-neutral-dark-00);
+}
+
+.bt-icon:hover path {
+  fill: var(---color-primary-purple-00);
+}
+
+.bt-icon:hover {
+  background-color: rgb(233, 233, 233);
 }

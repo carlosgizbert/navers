@@ -8,11 +8,13 @@
 
 .login-box {
   width: 448px;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
   padding: 2.5rem 2rem;
   margin: 0 2rem;
+  border-radius: 16px;
+  box-shadow: var(---shadow-10);
 }
 
 .logo {
