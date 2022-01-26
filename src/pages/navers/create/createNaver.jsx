@@ -88,23 +88,24 @@ const CreateNaver = () => {
   }
 
 
-const modalCustomStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    transform: 'translate(-50%, -50%)',
-    padding: '2rem',
-    border: 'none',
-    margin: '0',
-    height: 'auto',
-    borderRadius: '0'
-  },
-  overlay: {
-    backgroundColor: 'rgba(0, 0, 0, 0.5)'
+  const modalCustomStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      transform: 'translate(-50%, -50%)',
+      padding: '2rem',
+      border: 'none',
+      margin: '0',
+      height: 'auto',
+      borderRadius: 'var(---border-00)',
+      backgroundColor: 'var(---color-neutral-light-00)'
+    },
+    overlay: {
+      backgroundColor: 'rgba(0, 0, 0, 0.4)'
+    }
   }
-}
 
 const handleOpenModal = () => {
   setModalSuccess(true)

@@ -63,6 +63,7 @@ a {
 .bt {
   min-width: 176px;
   height: 40px;
+  border: none;
   border-radius: var(---border-00);
   display: flex;
   text-align: center;

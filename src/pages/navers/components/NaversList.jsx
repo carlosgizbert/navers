@@ -45,9 +45,30 @@ const token = localStorage.getItem('token')
 			backgroundColor: 'var(---color-neutral-light-00)'
 		},
 		overlay: {
-			backgroundColor: 'rgba(0, 0, 0, 0.5)'
+			backgroundColor: 'rgba(0, 0, 0, 0.4)'
 		}
 	}
+
+		// modal confirm delete - refatorar
+		const modalsDeleteCustomStyles = {
+			content: {
+				top: '50%',
+				left: '50%',
+				right: 'auto',
+				bottom: 'auto',
+				transform: 'translate(-50%, -50%)',
+				padding: '2rem',
+				border: 'none',
+				margin: '0',
+				height: 'auto',
+				borderRadius: 'var(---border-00)',
+				backgroundColor: 'var(---color-neutral-light-00)'
+			},
+			overlay: {
+				backgroundColor: 'rgba(0, 0, 0, 0.4)'
+			}
+		}
+
 
 	const handleOpenModalNaver = (naverId) => {
 		setCurrentNaver(naverId)
@@ -73,25 +94,7 @@ const token = localStorage.getItem('token')
 		).catch(e => console.log("Erro no catch"+e))
 	}
 
-	// modal confirm delete - refatorar
-	const modalConfirmDeleteCustomStyles = {
-		content: {
-			top: '50%',
-			left: '50%',
-			right: 'auto',
-			bottom: 'auto',
-			transform: 'translate(-50%, -50%)',
-			padding: '2rem',
-			border: 'none',
-			margin: '0',
-			height: 'auto',
-			borderRadius: 'var(---border-00)',
-			backgroundColor: 'var(---color-neutral-light-00)'
-		},
-		overlay: {
-			backgroundColor: 'rgba(0, 0, 0, 0.2)'
-		}
-	}
+
 
 	const handleOpenModalConfirmDelete = (naverId) => {
 		setCurrentNaver(naverId)
@@ -103,25 +106,7 @@ const token = localStorage.getItem('token')
     setModalConfirmDelete(false)
   }
 
-	// modal delete success - refatorar
-	const modalConfirmDeleteSuccessCustomStyles = {
-		content: {
-			top: '50%',
-			left: '50%',
-			right: 'auto',
-			bottom: 'auto',
-			transform: 'translate(-50%, -50%)',
-			padding: '2rem 2rem 3rem 2rem',
-			border: 'none',
-			margin: '0',
-			height: 'auto',
-			borderRadius: 'var(---border-10)',
-			backgroundColor: 'var(---color-neutral-light-00)'
-		},
-		overlay: {
-			backgroundColor: 'rgba(0, 0, 0, 0.2)'
-		}
-	}
+
 
 	const handleOpenModalDeleteSuccess = () => {
 		setModalConfirmDelete(false)
@@ -218,7 +203,7 @@ const token = localStorage.getItem('token')
 			<Modal 
 				isOpen={modalConfirmDelete && naver.id === currentNaver} 
 				onRequestClose={handleCloseModalConfirmDelete}
-				style={modalConfirmDeleteCustomStyles} 
+				style={modalsDeleteCustomStyles} 
 				ariaHideApp={false}
 				>
 				<div className="modal-delete">
@@ -236,7 +221,7 @@ const token = localStorage.getItem('token')
 			<Modal 
           isOpen={modalDeleteSucess} 
           onRequestClose={handleCloseModalDelSuccess}
-          style={modalConfirmDeleteSuccessCustomStyles} 
+          style={modalsDeleteCustomStyles} 
           ariaHideApp={false}
           >
           <div className="modal-success">
