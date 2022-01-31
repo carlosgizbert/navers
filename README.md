@@ -9,7 +9,7 @@ aplicar e praticar conhecimentos em
 * componentes react
 * rotas privadas
 * promises
-* context
+* context api
 * api rest
 * validação de formulários
 * design responsivo. 
