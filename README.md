@@ -4,6 +4,8 @@
 cadastrar, alterar e excluir um profissional com base no 
 <a href="https://www.figma.com/file/II8UDFm2uJFZaD0FOPcinP/Teste-Front-End?node-id=0%3A1" target="_blank">protótipo no figma</a>
 
+![imgur](https://i.imgur.com/NGCdO11.gif)
+
 ### meu objetivo
 aplicar e praticar conhecimentos em 
 * componentes react
@@ -21,8 +23,6 @@ Após clonar o projeto, através do terminal, entre na pasta do projeto e rode o
 
 ### resultado
 #### <a href="https://navers.vercel.app/" target="_blank">`https://navers.vercel.app/`</a>
-
-![imgur](https://i.imgur.com/NGCdO11.gif)
  
 ### desenvolvido
 * ✔️ login autenticando à api rest
